@@ -2,7 +2,7 @@
 
 Repository for the source code of Timberdoodle, a device-to-device anonymous communication application for the Android platform.
 
-## Supported Hardware
+## Supported hardware
 
 aDTN, the underlying protocol, makes use of wireless broadcasts, where IEEE 802.11 operates in ad-hoc mode, requiring no access points in range of the mobile device.
 
