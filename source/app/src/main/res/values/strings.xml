@@ -1,0 +1,161 @@
+<resources>
+    <string name="app_name">Timberdoodle</string>
+
+    <!-- Activity names -->
+    <string name="group_key_manager">Group key manager</string>
+    <string name="contact_key_manager">Contact key manager</string>
+
+    <!-- Key Management Fragment -->
+    <!-- New Group Fragment -->
+    <string name="groupNameText">Insert group name below</string>
+    <string name="groupNameField">Group name</string>
+    <string name="createNewGroupNameButton">Create new group</string>
+    <string name="name_already_exist">Name already exists.</string>
+    <string name="key_store_empty">List is empty.</string>
+
+    <!-- In Code Strings -->
+    <string name="warn_no_superuser">Warning: Could not obtain superuser permissions.</string>
+    <string name="join_this_group">Do you want to join this group?</string>
+    <string name="checksum">Checksum: %d</string>
+    <string name="input_groupname">Input new group name</string>
+    <string name="menu_rename">Rename</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_share">Share</string>
+    <string name="scan_groupKey">Scan QR code</string>
+    <string name="canceled_toast">Canceled</string>
+    <string name="wrongFormat_toast">Wrong format</string>
+    <string name="groupLengthWarning">Group name too short</string>
+    <string name="share_for">QR code can only be shared for 5 minutes after creating a new group.</string>
+    <string name="key_delete_dialog">Do you really want to delete the key \"%s\"? This cannot be undone!</string>
+    <string name="more_keys_delete_dialog">Do you really want to delete these %d keys? This cannot be undone!</string>
+    <string name="delete_button">Delete</string>
+    <string name="deleted_toast">Key \"%s\" was deleted!</string>
+    <string name="multiple_keys_deleted_toast">%d keys were deleted!</string>
+    <string name="message_delete_dialog">Do you really want to delete the message? This cannot be undone!</string>
+    <string name="truncated_message_delete_confirmation">"%s…" was deleted!</string>
+    <string name="message_delete_confirmation">"%s" was deleted!</string>
+    <string name="truncated_message_send_confirmation">"%s…" was sent!</string>
+    <string name="message_send_confirmation">"%s" was sent!</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="group_key_gone">Group entry is invalid. Please refresh list.</string>
+    <string name="group_key_already_known">This group key is already known under the name "%s".</string>
+    <string name="friend_key_already_known">This key is already assigned to the existing contact "%s".</string>
+    <string name="input_friendname">Input new contact name</string>
+    <string name="friend_key_gone">Contact entry is invalid. Please refresh list.</string>
+    <string name="friendLengthWarning">Contact name too short</string>
+    <string name="add_this_friend">Do you want to add this contact?</string>
+
+    <!-- Message input box-->
+    <string name="messageInputBox_hint">Type message</string>
+    <string name="messageInputBox_send">Send</string>
+    <string name="messageInputBox_oneCharLeft">About 1 character left</string>
+    <string name="messageInputBox_charsLeft">About %1$d characters left</string>
+    <string name="messageInputBox_noCharsLeft">0 characters left</string>
+    <string name="messageInputBox_messageIsEmpty">The message is empty</string>
+    <string name="messageInputBox_encodingMessageFailed">Error while encoding message</string>
+
+    <!--Settings-->
+    <string name="action_settings">Settings</string>
+    <string name="location_privacy">Location Privacy\t\t</string>
+    <string name="expert_settings">Expert settings</string>
+    <string name="batch_textview">Batch size</string>
+    <string name="interval_between">Interval between\nsending in seconds</string>
+    <string name="refill_factor">Sending pool\nrefill threshold</string>
+    <string name="auto_ibss">Auto-join ad-hoc</string>
+    <string name="settingsDialogTexts_0">Interval between sending in seconds.</string>
+    <string name="settingsDialogTexts_1">Sending pool refill threshold.</string>
+    <string name="settingsDialogTexts_2">Batch size.</string>
+
+    <!-- Review message-->
+    <string name="popupMessage_view">Review message</string>
+    <string name="popupMessage_text">Please make sure your message contains no identifying information!</string>
+    <string name="review_message">Review</string>
+    <string name="review_discard">DISCARD</string>
+    <string name="review_modify">MODIFY</string>
+    <string name="review_send">SEND</string>
+    <string name="review_review">REVIEW</string>
+
+    <!-- Navigation -->
+    <string name="tab_public">Public</string>
+    <string name="tab_private">Private</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="nav_messaging">Messaging</string>
+    <string name="nav_group_management">Group management</string>
+    <string name="nav_group_list">Group list</string>
+    <string name="nav_join_group">Join group</string>
+    <string name="nav_create_group">Create group</string>
+    <string name="nav_friend_management">Contact management</string>
+    <string name="nav_friend_list">Contact list</string>
+    <string name="nav_add_friend">Add contact</string>
+    <string name="nav_send_public_key">Send public key</string>
+    <string name="nav_settings">Settings</string>
+    <string name="help_0">See or send public and private messages.\nJust click on Public Messages or Private Messages.</string>
+    <!-- Messages -->
+    <string name="help_1">Here you can see and send your public messages.\nShort press on messages will show you the whole text.\nOn long press they can be deleted.</string>
+    <!-- Public Messages -->
+    <string name="help_2">Here you can see and send your private messages.</string>
+    <!-- Private Messages -->
+    <string name="help_3">You can join, invite or manage all your groups here.</string>
+    <!-- Group management -->
+    <string name="help_4">Manage your groups here.\nLong press to select multiple.\nShort press to delete, rename or share (5 minutes) a group invitation.</string>
+    <!-- Group List -->
+    <string name="help_5">Scan QR code to join a group or to add a contact.</string>
+    <!-- Scan QR-Code -->
+    <string name="help_6">Create a new group here.\nEnter desired group name and hit create group.\nAfter that you will see a QR code which you can share (for 5 minutes) to create a group.</string>
+    <!-- Create Group -->
+    <string name="help_7">You can add, invite or manage all your contacts here.</string>
+    <!-- Friend management -->
+    <string name="help_8">Manage your contacts here.\nLong press to select multiple.\nShort press to delete or rename.</string>
+    <!-- Friend list -->
+    <string name="help_10">Show this QR code to your contacts, so they can add you for private messaging.</string>
+    <!-- Send invitation -->
+    <string name="help_11">Review messages before you send them. Be sure that the message doesn\'t contain any identifying data.\nClick on the text to change it. Hit send when you are ready to send the message.</string>
+    <!-- Review message -->
+    <string name="help_12">The whole message will be shown here.</string>
+    <!-- Full Message -->
+
+    <!-- Dialog Box for dev report -->
+    <string name="report_to_devs">An error occurred earlier. Report this error to the devs?</string>
+    <string name="send_mail">Send mail...</string>
+    <string name="no_mail_clients">There are no email clients installed</string>
+
+    <!-- Password setting -->
+    <string name="set_group_password">Please enter a password for your groups:</string>
+    <string name="set_private_password">Please enter a password for private messaging:</string>
+    <string name="enter_group_password">Please enter your group password:</string>
+    <string name="enter_private_password">Please enter your private messaging password:</string>
+    <string name="repeat_password">Please repeat the password to confirm:</string>
+    <string name="repeat_password_failed">Passwords do not match.</string>
+    <string name="reset_group_password">If you forgot your password, you can reset it. This will clear all groups and cannot be undone! Do you want to reset your password?</string>
+    <string name="reset_private_password">If you forgot your password, you can reset it. This will reset your private messaging key and cannot be undone! Do you want to reset your password?</string>
+    <string name="warn_no_group_password">Without your group password you cannot add new or use existing groups. This means you won\'t be able to send or receive any messages. Do you really want to continue without password?</string>
+    <string name="warn_no_private_password">Without your private messaging password your private messaging key cannot be accessed. This means you won\'t be able to receive any private messages or send signed messages. Do you really want to continue without password?</string>
+    <string name="use_same_password">Do you want to protect your private messaging key pair with the same password that is used for groups?</string>
+    <string name="empty_password_not_allowed">You cannot set an empty password.</string>
+    <string name="wrong_password">Wrong password.</string>
+
+    <!-- Private messaging -->
+    <string name="anonymous">Anonymous</string>
+    <string name="anonymous_writing">Do you want to send this message anonymously?</string>
+    <string name="too_long_for_signed_message">This message is about %d characters too long to be signed.</string>
+    <string name="choose_friend_receiver">Choose a friend to send a new message</string>
+    <string name="empty_contact_list">No friends to show.</string>
+
+    <!-- Message arrival notification -->
+    <string name="unread_messages">Unread message(s)</string>
+    <string name="unread_public_messages">%d public message(s)</string>
+    <string name="unread_private_messages">%d private message(s)</string>
+    <string name="unread_public_and_private_messages">%1$d public and %2$d private</string>
+
+    <!-- Networking status handling -->
+    <string name="networking_status">aDTN status</string>
+    <string name="button_restart_networking">Restart networking</string>
+    <string name="networking_enabled">Networking is enabled.</string>
+    <string name="networking_disabled">Networking is disabled.</string>
+    <string name="networking_error">Networking is disabled due to an error:</string>
+    <string name="group_key_store_not_accessible">Group keys not accessible</string>
+    <string name="sending_error">Error while sending: </string>
+    <string name="receiving_error">Error while receiving: </string>
+    <string name="networking_notification_error">Networking disabled due to error.</string>
+</resources>

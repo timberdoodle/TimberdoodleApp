@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?attr/spinnerDropDownItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="?dropdownListPreferredItemHeight">
+
+
+    <TextView
+        android:id="@+id/header_navigation"
+        style="?spinnerDropDownItemStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="COOKIE"
+        android:textColor="#8C000000"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/icon_help"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:paddingRight="24dp"
+        android:src="@drawable/ic_help_black_24dp" />
+
+</RelativeLayout>

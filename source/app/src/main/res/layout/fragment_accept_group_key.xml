@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shadow="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="8dp">
+
+    <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        shadow:z_depth="z_depth1"
+        shadow:z_depth_padding="z_depth1"
+        shadow:z_depth_shape="rect">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/checkSumTexView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                shadow:z_depth="z_depth2"
+                shadow:z_depth_padding="z_depth2"
+                shadow:z_depth_shape="rect">
+
+                <ImageView
+                    android:id="@+id/acceptQRImgView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal" />
+            </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+        </LinearLayout>
+    </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
+
+        <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            shadow:z_depth="z_depth1"
+            shadow:z_depth_padding="z_depth1"
+            shadow:z_depth_shape="rect">
+
+            <Button
+                android:id="@+id/acceptInviteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="#2196F3"
+                android:gravity="center"
+                android:minWidth="88dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="Join"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+        </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+    </LinearLayout>
+</LinearLayout>

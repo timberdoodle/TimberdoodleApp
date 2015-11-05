@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Timberdoodle</string>
+
+    <!-- Activity names -->
+    <string name="group_key_manager">Gruppenverwaltung</string>
+    <string name="contact_key_manager">Kontaktverwaltung</string>
+
+    <!-- Key Management Fragment -->
+    <!-- New Group Fragment -->
+    <string name="groupNameText">Gruppenname einfügen</string>
+    <string name="groupNameField">Gruppenname</string>
+    <string name="createNewGroupNameButton">Neue Gruppe erstellen</string>
+    <string name="name_already_exist">Name ist bereits vorhanden</string>
+    <string name="key_store_empty">Keine Schlüssel vorhanden</string>
+
+    <!-- In Code Strings -->
+    <string name="warn_no_superuser">Achtung: Superuser-Rechte wurden nicht erteilt.</string>
+    <string name="join_this_group">Wollen Sie dieser Gruppe beitreten?</string>
+    <string name="checksum">Prüfsumme: %d</string>
+    <string name="input_groupname">Neuen Gruppennamen eingeben</string>
+    <string name="menu_rename">Umbenennen</string>
+    <string name="menu_delete">Löschen</string>
+    <string name="menu_share">Teilen</string>
+    <string name="scan_groupKey">QR Code einscannen</string>
+    <string name="canceled_toast">Abgebrochen</string>
+    <string name="wrongFormat_toast">Falsches Format</string>
+    <string name="groupLengthWarning">Gruppenname zu kurz</string>
+    <string name="share_for">Der QR-Code kann nur innerhalb von 5 Minuten nach der Gruppenerstellung geteilt werden.</string>
+    <string name="key_delete_dialog">Wollen Sie diesen Schlüssel wirklich unwiderruflich löschen?</string>
+    <string name="more_keys_delete_dialog">Wollen Sie diese %d Schlüssel wirklich unwiderruflich löschen?</string>
+    <string name="delete_button">Löschen</string>
+    <string name="deleted_toast">" wurde gelöscht!"</string>
+    <string name="message_delete_dialog">Wollen Sie diese Nachricht wirklich unwiderruflich löschen?</string>
+    <string name="truncated_message_delete_confirmation">… wurde gelöscht!</string>
+    <string name="message_delete_confirmation">"%s" wurde gelöscht!</string>
+    <string name="truncated_message_send_confirmation">… wurde gesendet!</string>
+    <string name="message_send_confirmation">"%s" wurde gesendet!</string>
+    <string name="yesterday">Gestern</string>
+    <string name="add_this_friend">Wollen sie diesen Kontakt hinzufügen?</string>
+
+    <!-- Message input box-->
+    <string name="messageInputBox_hint">Nachricht schreiben</string>
+    <string name="messageInputBox_send">Senden</string>
+    <string name="messageInputBox_oneCharLeft">Etwa 1 Zeichen übrig</string>
+    <string name="messageInputBox_charsLeft">Etwa %1$d Zeichen übrig</string>
+    <string name="messageInputBox_noCharsLeft">0 Zeichen übrig</string>
+    <string name="messageInputBox_messageIsEmpty">Diese Nachricht ist leer</string>
+    <string name="messageInputBox_encodingMessageFailed">Fehler beim Kodieren der Nachricht</string>
+
+    <!-- Settings-->
+    <string name="action_settings">Einstellungen</string>
+    <string name="location_privacy">Flugmodus mit WLAN\t\t</string>
+    <string name="expert_settings">Expertenmodus Einstellugen</string>
+    <string name="batch_textview">Batch-Größe</string>
+    <string name="interval_between">Sendeintervall (in Sekunden)</string>
+    <string name="refill_factor">Sending-Pool-\nNachfüllgrenze</string>
+    <string name="settingsDialogTexts_0">Sendeintervall (in Sekunden)</string>
+    <string name="settingsDialogTexts_1">Sending-Pool-Nachfüllgrenze</string>
+    <string name="settingsDialogTexts_2">Batch-Größe</string>
+
+    <!-- Review message-->
+    <string name="popupMessage_view">Nachricht kontrollieren</string>
+    <string name="popupMessage_text">Bitte stellen Sie sicher, dass Ihre Nachricht keine identifizierenden Daten enthält!</string>
+    <string name="review_message">Nachricht überprüfen</string>
+    <string name="review_discard">VERWERFEN</string>
+    <string name="review_modify">ÄNDERN</string>
+    <string name="review_send">SENDEN</string>
+    <string name="review_review">ÜBERPRÜFEN</string>
+
+    <!-- Navigation -->
+    <string name="tab_public">Öffentlich</string>
+    <string name="tab_private">Privat</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="nav_messaging">Nachrichten</string>
+    <string name="nav_group_management">Gruppenschlüsselverwaltung</string>
+    <string name="nav_group_list">Gruppenliste</string>
+    <string name="nav_join_group">Einer Gruppe beitreten</string>
+    <string name="nav_create_group">Gruppe erstellen</string>
+    <string name="nav_friend_management">Kontaktverwaltng</string>
+    <string name="nav_friend_list">Kontakte</string>
+    <string name="nav_add_friend">Kontakt hinzufügen</string>
+    <string name="nav_send_public_key">Eigenen Schlüssel senden</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="input_friendname">Neuen Namen für Kontakt eingeben</string>
+    <string name="friend_key_gone">Kontakt-Eintrag ungültig. Bitte Liste aktualisieren.</string>
+    <string name="friend_key_already_known">Dieser Kontakt ist bereits als "%s" bekannt.</string>
+    <string name="friendLengthWarning">Name des Kontakts zu kurz</string>
+    <string name="group_key_already_known">Diese Gruppe ist bereits als "%s" bekannt.</string>
+    <string name="group_key_gone">Gruppeneintrag ungültig. Bitte Liste aktualisieren.</string>
+    <string name="multiple_keys_deleted_toast">%d Schlüssel wurden gelöscht</string>
+
+    <!-- Dialog Box for dev report -->
+    <string name="report_to_devs">Ein Fehler ist aufgetreten. Fehler an die Entwickler melden?</string>
+    <string name="send_mail">Mail senden...</string>
+    <string name="no_mail_clients">Es sind keine E-Mail Programme installiert</string>
+
+    <!-- Password setting -->
+    <string name="set_group_password">Bitte vergeben Sie ein Passwort für Ihre Gruppen:</string>
+    <string name="set_private_password">Bitte vergeben Sie ein Passwort für private Kommunikation:</string>
+    <string name="enter_group_password">Bitte geben Sie das Passwort für Ihre Gruppen ein:</string>
+    <string name="enter_private_password">Bitte geben Sie das Passwort für private Kommunikation ein:</string>
+    <string name="repeat_password">Bitte wiederholen Sie das Passwort zur Bestätigung:</string>
+    <string name="repeat_password_failed">Die Passwörter sind nicht gleich.</string>
+    <string name="reset_group_password">Wenn Sie Ihr Passwort vergessen haben, können Sie es zurücksetzen. Dadurch werden ihre bisherigen Gruppen gelöscht. Möchten Sie Ihr Passwort zurücksetzen?</string>
+    <string name="reset_private_password">Wenn Sie Ihr Passwort vergessen haben, können Sie es zurücksetzen. Dadurch wird Ihr Schlüssel für private Kommunikation zurückgesetzt. Möchten Sie Ihr Passwort zurücksetzen?</string>
+    <string name="warn_no_group_password">Wenn Sie kein Passwort angeben, können Sie keine Gruppen anlegen, keinen Gruppen beitreten und keine bestehenden Gruppen nutzen. Das bedeutet, dass Sie weder Nachrichten versenden noch empfangen können werden. Wollen Sie wirklich ohne Passwort weitermachen?</string>
+    <string name="warn_no_private_password">Auf Ihren Schlüssel für private Kommunikation kann nicht zugegriffen werden wenn Sie kein Passwort angeben. Das bedeutet, dass Sie weder private Nachrichten empfangen noch signierte Nachrichten verschicken können. Wollen Sie wirklich ohne Passwort weitermachen?</string>
+    <string name="use_same_password">Möchten Sie Ihr Schlüsselpaar für private Kommunikation mit dem gleichen Passwort schützen, das auch für Gruppen verwendet wird?</string>
+    <string name="empty_password_not_allowed">Ein leeres Paswort ist nicht erlaubt.</string>
+    <string name="wrong_password">Das Passwort ist falsch.</string>
+
+    <string name="auto_ibss">Ad-hoc-Netz erstellen</string>
+    <string name="help_0">Anzeige öffentlicher und privater Nachrichten.</string>
+    <string name="help_1">Anzeige und Versenden öffentlicher Nachrichten. Ganze Nachricht durch kurzes Antippen anzeigen. Löschen durch gedrückt halten.</string>
+    <string name="help_10">Zeigen Sie diesen QR-Code den Personen, die Sie in Ihre Kontaktliste für private Kommunikation aufnehmen wollen.</string>
+    <string name="help_8">Hier können Sie ihre Kontakte verwalten. Kurz antippen zum Löschen oder Umbenennen. Gedrückt halten um mehrere auszuwählen.</string>
+    <string name="help_11">Vergewissern Sie sich, dass die Nachricht keine identifizierenden Informationen enthält. Tippen Sie den Text an, um die Nachricht zu ändern oder tippen sie auf "Senden" wenn die Nachricht nicht geändert werden soll.</string>
+    <string name="help_12">Hier wird die vollständige Nachricht angezeigt.</string>
+    <string name="help_2">Anzeige und Versenden privater Nachrichten.</string>
+    <string name="help_3">Hier können Sie Gruppen erstellen, beitreten und verwalten.</string>
+    <string name="help_4">Hier können Sie ihre Gruppen verwalten. Kurz antippen zum Löschen oder Umbenennen. Gedrückt halten um mehrere auszuwählen.</string>
+    <string name="help_5">QR-Code einer Gruppe oder eines Kontakts einlesen.</string>
+    <string name="help_6">Hier können Sie eine neue Gruppe erstellen.\nGeben Sie den gewünschten Gruppennamen ein und drücken Sie "Gruppe erstellen".\nDanach erhalten Sie einen QR-Code, den Sie für 5 Minuten teilen können um Mitglieder in die Gruppe aufzunehmen.</string>
+    <string name="help_7">Hier können Sie Kontakte hinzufügen, ihren Schlüssel weitergeben um als Kontakt aufgenommen zu werden und Kontakte verwalten.</string>
+
+    <!-- Private messaging -->
+    <string name="anonymous">Anonym</string>
+    <string name="anonymous_writing">Möchten Sie die Nachricht anonym versenden?</string>
+    <string name="too_long_for_signed_message">Die Nachricht ist etwa %d Zeichen zu lang um signiert zu werden.</string>
+    <string name="choose_friend_receiver">Wählen Sie einen Kontakt aus</string>
+    <string name="empty_contact_list">Keine Kontakte gefunden.</string>
+
+    <!-- Message arrival notification -->
+    <string name="unread_messages">Ungelesene Nachricht(en)</string>
+    <string name="unread_public_messages">%d öffentliche Nachricht(en)</string>
+    <string name="unread_private_messages">%d private Nachricht(en)</string>
+    <string name="unread_public_and_private_messages">%1$d öffentliche %2$d private</string>
+
+    <!-- Networking status handling -->
+    <string name="networking_status">aDTN-Status</string>
+    <string name="button_restart_networking">Netzwerk wiederherstellen</string>
+    <string name="networking_enabled">Netzwerk ist aktiviert.</string>
+    <string name="networking_disabled">Netzwerk ist deaktiviert.</string>
+    <string name="networking_error">Netzwerk ist aufgrund eines Fehlers deaktiviert:</string>
+    <string name="group_key_store_not_accessible">Kein Zugriff auf die Gruppenschlüssel</string>
+    <string name="sending_error">Fehler beim Senden: </string>
+    <string name="receiving_error">Fehler beim Empfangen: </string>
+    <string name="networking_notification_error">Netzwerkfehler.</string>
+</resources>

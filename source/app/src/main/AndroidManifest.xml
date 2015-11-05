@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.tu_darmstadt.timberdoodle">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity
+            android:name=".ui.Activities.MessagingActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="de.tu_darmstadt.adtn.ui.SingleFragmentActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"></activity>
+        <activity
+            android:name=".ui.Activities.ConversationActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"></activity>
+        <activity
+            android:name=".ui.Activities.SingleFragmentMultiInstancesActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.Activities.SettingsActivity"
+            android:label="@string/action_settings"
+            android:launchMode="singleTask"></activity>
+        <activity
+            android:name="de.tu_darmstadt.adtn.ui.groupmanager.GroupManagerActivity"
+            android:label="@string/group_key_manager"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.contactmanager.ContactManagerActivity"
+            android:label="@string/contact_key_manager"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="de.tu_darmstadt.adtn.ui.NetworkingStatusActivity"
+            android:label="@string/networking_status" >
+        </activity>
+
+        <service
+            android:name="de.tu_darmstadt.timberdoodle.Service"
+            android:enabled="true"
+            android:exported="false"></service>
+        <service
+            android:name="de.tu_darmstadt.adtn.Service"
+            android:enabled="true"
+            android:exported="false"></service>
+    </application>
+
+</manifest>

@@ -1,0 +1,98 @@
+<!-- Dummy Activity Layout. This one will never be used. Just take it as template -->
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Add Activity Layout here-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:shadow="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                shadow:z_depth="z_depth1"
+                shadow:z_depth_padding="z_depth1"
+                shadow:z_depth_shape="rect">
+
+                <ListView
+                    android:id="@+id/conversationMessageListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:longClickable="true" />
+            </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minLines="2"
+                android:text="There are no public messages yet"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            shadow:z_depth="z_depth1"
+            shadow:z_depth_padding="z_depth1"
+            shadow:z_depth_shape="rect">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:weightSum="1">
+
+                <view
+                    android:id="@+id/messageInputBox"
+                    class="de.tu_darmstadt.timberdoodle.ui.MessageInputBox"
+                    android:layout_width="260dp"
+                    android:layout_height="wrap_content" />
+
+                <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    shadow:z_depth="z_depth1"
+                    shadow:z_depth_padding="z_depth1"
+                    shadow:z_depth_shape="rect">
+
+                    <Button
+                        android:id="@+id/send_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#2196F3"
+                        android:text="@string/messageInputBox_send"
+                        android:textColor="#FFFFFF" />
+                </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+            </LinearLayout>
+        </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+    </LinearLayout>
+    <!-- End of Activity -->
+
+    <ListView
+        android:id="@+id/left_drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#fff"
+        android:choiceMode="singleChoice"
+        android:divider="#e3e3e3"
+        android:dividerHeight="0dp" />
+</android.support.v4.widget.DrawerLayout>
+

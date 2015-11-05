@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shadow="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scan_key_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        shadow:z_depth="z_depth1"
+        shadow:z_depth_padding="z_depth1"
+        shadow:z_depth_shape="rect">
+
+        <ImageButton
+            android:id="@+id/qrReadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#2196F3"
+            android:contentDescription="Can't find Image"
+            android:onClick="qrReadClick"
+            android:padding="40dp"
+            android:src="@drawable/ic_photo_camera_white_36dp" />
+    </app.mosn.zdepthshadowlayout.ZDepthShadowLayout>
+</RelativeLayout>

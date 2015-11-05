@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/edit_inputMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/messageInputBox_hint"
+        android:imeOptions="flagNoExtractUi"
+        android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/text_charactersLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+</merge>

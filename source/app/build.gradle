@@ -1,0 +1,129 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "de.tu_darmstadt.timberdoodle"
+        minSdkVersion 15
+        targetSdkVersion 15
+        versionCode 1
+        versionName "1.0"
+        
+        multiDexEnabled true
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+        }
+    }
+
+    sourceSets {
+        instrumentationTest {
+            res.srcDirs = ['/src/androidTest/res']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            jniDebuggable true
+        }
+    }
+
+    productFlavors {
+        x86 {
+            ndk {
+                abiFilter "x86"
+            }
+        }
+        mips {
+            ndk {
+                abiFilter "mips"
+            }
+        }
+        armv7 {
+            ndk {
+                abiFilter "armeabi-v7a"
+            }
+        }
+        arm {
+            ndk {
+                abiFilter "armeabi"
+            }
+        }
+        fat
+    }
+
+    sourceSets.main {
+        jniLibs.srcDir 'src/main/libs'
+        jni.srcDirs = [] //disable automatic ndk-build call
+    }
+
+    task ndkBuild(type: Exec) {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def ndkDir = properties.getProperty('ndk.dir')
+        def ndkBuildPrefix = ndkDir != null ? ndkDir + '/' : '';
+
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            commandLine ndkBuildPrefix + 'ndk-build.cmd', '-C', file('src/main').absolutePath
+        } else {
+            commandLine ndkBuildPrefix +'ndk-build', '-C', file('src/main').absolutePath
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn ndkBuild
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:design:22.2.1'
+    // Supports Android 4.0.3 and later (API level 15)
+    compile 'com.journeyapps:zxing-android-embedded:2.3.0@aar'
+    // Supports Android 2.1 and later (API level 7), but not optimal for later Android versions.
+    // If you only plan on supporting Android 4.0.3 and up, you don't need to include this.
+    compile 'com.journeyapps:zxing-android-legacy:2.3.0@aar'
+    // Convenience library to launch the scanning Activities.
+    // It automatically picks the best scanning library from the above two, depending on the
+    // Android version and what is available.
+    compile 'com.journeyapps:zxing-android-integration:2.3.0@aar'
+    // Version 3.0.x of zxing core contains some code that is not compatible on Android 2.2 and earlier.
+    // This mostly affects encoding, but you should test if you plan to support these versions.
+    // Older versions e.g. 2.2 may also work if you need support for older Android versions.
+    compile 'com.google.zxing:core:3.2.0'
+    compile 'joda-time:joda-time:2.3'
+    //androidTestCompile 'junit:junit:4.12'
+    compile 'com.github.ShogoMizumoto:ZDepthShadowLayout:1.0.4'
+    compile 'com.madgag.spongycastle:prov:1.52.0.0'
+    compile 'com.madgag.spongycastle:pkix:1.52.0.0'
+    compile 'com.madgag.spongycastle:pg:1.52.0.0'
+    compile 'com.madgag.spongycastle:core:1.52.0.0'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'org.apache.ant:ant:1.9.6'
+}
+repositories {
+    mavenCentral()
+
+    maven {
+        url "https://jitpack.io"
+    }
+
+}
+
