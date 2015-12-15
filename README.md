@@ -1,6 +1,6 @@
 # Timberdoodle Android App
 
-Repository for the source code of Timberdoodle, a device-to-device anonymous communication application for the Android platform.
+Timberdoodle is a device-to-device anonymous communication application for the Android platform. More information on the anonymity features can be found [here](https://www.seemoo.tu-darmstadt.de/team/ana-barroso/adtn).
 
 ## Supported hardware
 
