@@ -8,7 +8,6 @@ import java.util.Random;
 
 import javax.crypto.SecretKey;
 
-import de.tu_darmstadt.adtn.AdtnSocketException;
 import de.tu_darmstadt.adtn.ISocket;
 import de.tu_darmstadt.adtn.groupkeystore.IGroupKeyStore;
 import de.tu_darmstadt.adtn.messagestore.IMessageStore;
@@ -28,7 +27,6 @@ public class SendingPool implements ISendingPool {
     private LinkedList<SendingPoolEntry> entries = new LinkedList<>();
     private Thread thread;
     private Random random = new Random();
-    private OnSendingErrorListener onSendingErrorListener;
     private IPreferences preferences;
     private IPreferences.OnCommitListener preferencesListener = new de.tu_darmstadt.adtn.genericpreferences.Preferences.OnCommitListener() {
         @Override
@@ -51,15 +49,13 @@ public class SendingPool implements ISendingPool {
      * @param groupKeyStore The key store containing the keys to encrypt the packets.
      */
     public SendingPool(IPreferences preferences, ISocket socket, IMessageStore messageStore,
-                       IPacketBuilder packetBuilder, IGroupKeyStore groupKeyStore,
-                       OnSendingErrorListener onSendingErrorListener) {
+                       IPacketBuilder packetBuilder, IGroupKeyStore groupKeyStore) {
         // Store references
         this.preferences = preferences;
         this.socket = socket;
         this.messageStore = messageStore;
         this.packetBuilder = packetBuilder;
         this.groupKeyStore = groupKeyStore;
-        this.onSendingErrorListener = onSendingErrorListener;
 
         // Register preferences listener and load current preferences
         preferences.addOnCommitListenerListener(preferencesListener);
@@ -164,12 +160,7 @@ public class SendingPool implements ISendingPool {
         // Finally send the packets stored in batch
         for (SendingPoolEntry entry : batch) {
             // Try to send the packet
-            try {
-                socket.send(entry.getPacket(), 0);
-            } catch (AdtnSocketException e) {
-                onSendingErrorListener.onSendingError(e);
-                return false;
-            }
+
 
             // Update statistics for message if this is not a dummy packet
             if (entry.getMessageID() != null) messageStore.sentMessage(entry.getMessageID());

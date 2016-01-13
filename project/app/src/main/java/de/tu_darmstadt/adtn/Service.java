@@ -19,14 +19,11 @@ import de.tu_darmstadt.adtn.messagestore.IMessageStore;
 import de.tu_darmstadt.adtn.messagestore.MessageStore;
 import de.tu_darmstadt.adtn.packetbuilding.IPacketBuilder;
 import de.tu_darmstadt.adtn.packetbuilding.PacketBuilder;
-import de.tu_darmstadt.adtn.packetsocket.PacketSocket;
 import de.tu_darmstadt.adtn.preferences.IPreferences;
 import de.tu_darmstadt.adtn.preferences.Preferences;
 import de.tu_darmstadt.adtn.sendingpool.ISendingPool;
 import de.tu_darmstadt.adtn.sendingpool.SendingPool;
 import de.tu_darmstadt.adtn.ui.NetworkingStatusNotification;
-import de.tu_darmstadt.adtn.wifi.IbssNetwork;
-import de.tu_darmstadt.adtn.wifi.MacSpoofing;
 import de.tu_darmstadt.timberdoodle.R;
 
 /**
@@ -63,7 +60,6 @@ public class Service extends android.app.Service implements IService {
     // Sending and receiving
     private IMessageStore messageStore;
     private IPacketBuilder packetBuilder;
-    private ISocket socket;
     private ISendingPool sendingPool;
     private Thread receiveThread;
     private volatile boolean stopReceiving;
@@ -87,9 +83,6 @@ public class Service extends android.app.Service implements IService {
 
     // For sending message arrival broadcast intents to other application components
     private LocalBroadcastManager broadcastManager;
-
-    // Keeps the ad-hoc network alive
-    private IbssNetwork ibssNetwork;
 
     @Override
     public void onCreate() {
@@ -146,38 +139,12 @@ public class Service extends android.app.Service implements IService {
                 return;
             }
 
-            // Try to spoof MAC address
-            MacSpoofing.trySetRandomMac();
-
             // Keep running in background
             startService(new Intent(this, Service.class));
 
-            // Enable ad-hoc auto-connect and set up preference listener
-            ibssNetwork = new IbssNetwork(this);
-            if (preferences.getAutoJoinAdHocNetwork()) ibssNetwork.start();
-            preferences.addOnCommitListenerListener(new de.tu_darmstadt.adtn.genericpreferences.IPreferences.OnCommitListener() {
-                @Override
-                public void onCommit() {
-                    if (preferences.getAutoJoinAdHocNetwork()) {
-                        ibssNetwork.start();
-                    } else {
-                        ibssNetwork.stop();
-                    }
-                }
-            });
 
             // Create socket, message store and sending pool
-            socket = new PacketSocket(this, "wlan0", 0xD948,
-                    new byte[]{(byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff},
-                    new byte[]{(byte) 0x00, (byte) 0x41, (byte) 0xAC, (byte) 0xC2, (byte) 0x96, (byte) 0xC6},
-                    packetBuilder.getEncryptedPacketSize());
-            sendingPool = new SendingPool(preferences, socket, messageStore, packetBuilder,
-                    groupKeyStore, new ISendingPool.OnSendingErrorListener() {
-                @Override
-                public void onSendingError(AdtnSocketException e) {
-                    stopNetworking(getString(R.string.sending_error) + e.getLocalizedMessage(), true);
-                }
-            });
+
 
             // Start receiving
             stopReceiving = false;
@@ -245,17 +212,14 @@ public class Service extends android.app.Service implements IService {
                     // Stop sending and receiving
                     sendingPool.close();
                     stopReceiving = true;
-                    socket.close();
+
                     joinReceiveThread();
 
                     // Stop ad-hoc auto-connect
-                    ibssNetwork.stop();
+
 
                     // Stop service if no one binds to it
                     stopSelf();
-
-                    // Disable MAC spoofing
-                    MacSpoofing.tryDisable();
 
                     setNetworkingStatus(false, errorMessage);
                 }
@@ -296,15 +260,7 @@ public class Service extends android.app.Service implements IService {
 
         while (true) {
             // Received encrypted packet
-            try {
-                socket.receive(receiveBuffer, 0);
-            } catch (AdtnSocketException e) {
-                // receive() fails if networking is stopping or if an actual error occurred
-                if (!stopReceiving) {
-                    stopNetworking(getString(R.string.receiving_error) + e.getLocalizedMessage(), true);
-                }
-                break;
-            }
+
 
             // Try to decrypt. Skip if not possible.
             byte[] unpacked = packetBuilder.tryUnpackPacket(receiveBuffer, groupKeyStore.getKeys());

@@ -67,22 +67,6 @@ android {
         jni.srcDirs = [] //disable automatic ndk-build call
     }
 
-    task ndkBuild(type: Exec) {
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        def ndkDir = properties.getProperty('ndk.dir')
-        def ndkBuildPrefix = ndkDir != null ? ndkDir + '/' : '';
-
-        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-            commandLine ndkBuildPrefix + 'ndk-build.cmd', '-C', file('src/main').absolutePath
-        } else {
-            commandLine ndkBuildPrefix +'ndk-build', '-C', file('src/main').absolutePath
-        }
-    }
-
-    tasks.withType(JavaCompile) {
-        compileTask -> compileTask.dependsOn ndkBuild
-    }
 
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'

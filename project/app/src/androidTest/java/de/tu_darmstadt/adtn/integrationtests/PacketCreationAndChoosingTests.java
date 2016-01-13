@@ -4,7 +4,6 @@ import android.test.InstrumentationTestCase;
 
 import java.util.List;
 
-import de.tu_darmstadt.adtn.AdtnSocketException;
 import de.tu_darmstadt.adtn.GroupKeyStoreMock;
 import de.tu_darmstadt.adtn.ProtocolConstants;
 import de.tu_darmstadt.adtn.ciphersuite.GroupCipherSuite;
@@ -36,11 +35,7 @@ public class PacketCreationAndChoosingTests extends InstrumentationTestCase{
             IPacketBuilder packetBuilder = new PacketBuilder(ProtocolConstants.MAX_MESSAGE_SIZE);
             IGroupCipher groupCipher = new GroupCipherSuite(packetBuilder.getUnencryptedPacketSize());
             packetBuilder.setCipher(groupCipher);
-            sendingPool = new SendingPool(prefs, destination, new MessageStore(getInstrumentation().getTargetContext()), packetBuilder, store, new ISendingPool.OnSendingErrorListener() {
-                @Override
-                public void onSendingError(AdtnSocketException e) {
-                }
-            });
+            sendingPool = new SendingPool(prefs, destination, new MessageStore(getInstrumentation().getTargetContext()), packetBuilder, store);
             setUpDone = true;
         }
     }
