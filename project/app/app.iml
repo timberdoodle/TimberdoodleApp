@@ -116,8 +116,8 @@
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="zxing-android-legacy-2.3.0" level="project" />
-    <orderEntry type="library" exported="" name="ant-1.9.6" level="project" />
     <orderEntry type="library" exported="" name="ant-launcher-1.9.6" level="project" />
+    <orderEntry type="library" exported="" name="ant-1.9.6" level="project" />
     <orderEntry type="library" exported="" name="design-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="pg-1.52.0.0" level="project" />
     <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />

@@ -7,7 +7,7 @@ plugins {
 sonarqube {
     properties {
         property "sonar.scm.provider", "git"
-        property "sonar.sources", "src/main/java/de/tu_darmstadt/adtn"
+        property "sonar.sources", "src/main/java/de/tudarmstadt/adtn"
     }
 }
 

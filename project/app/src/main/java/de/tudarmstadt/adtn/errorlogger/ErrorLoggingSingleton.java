@@ -19,6 +19,7 @@ import java.io.IOException;
  */
 public class ErrorLoggingSingleton {
 
+    private static final String TAG = "ErrorLoggingSingleton";
     //file name
     private final String filename = "ErrorLog.txt";
     //developer mail adress or the adress of someone responsible
@@ -121,6 +122,7 @@ public class ErrorLoggingSingleton {
                 return true;
             } else return false;
         } catch (IOException e) {
+            Log.wtf(TAG, e);
             return false;
         }
     }
@@ -130,29 +132,21 @@ public class ErrorLoggingSingleton {
      *
      * @return returns the whole error log as String.
      */
-    private String readLog() {
-        try {
-            //Initialisation
-            int bufferSize = 1024;
-            byte[] buffer = new byte[bufferSize];
-            StringBuilder sb = new StringBuilder();
-            //Open FileInputStream and create a BufferedInputStream with it (for performance)
-            FileInputStream in = context.openFileInput(filename);
-            BufferedInputStream reader = new BufferedInputStream(in);
-            //Read the text file.
-            while (reader.read(buffer) != -1) {
-                sb.append(new String(buffer));
-            }
-            //close the reader and return result
-            reader.close();
-            return sb.toString().trim();
-        } catch (FileNotFoundException e) {
-            Log.d("Errorlogger", "Recoverable error happened here");
-            return "";
-        } catch (IOException e) {
-            Log.d("Errorlogger", "Recoverable error happened here");
-            return "";
+    private String readLog() throws IOException{
+        //Initialisation
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+        StringBuilder sb = new StringBuilder();
+        //Open FileInputStream and create a BufferedInputStream with it (for performance)
+        FileInputStream in = context.openFileInput(filename);
+        BufferedInputStream reader = new BufferedInputStream(in);
+        //Read the text file.
+        while (reader.read(buffer) != -1) {
+            sb.append(new String(buffer));
         }
+        //close the reader and return result
+        reader.close();
+        return sb.toString().trim();
     }
 
     /**
@@ -167,7 +161,11 @@ public class ErrorLoggingSingleton {
         StringBuilder sb = new StringBuilder();
         //Build mail body
         //read stack trace
-        sb.append(readLog());
+        try {
+            sb.append(readLog());
+        } catch(IOException e) {
+            sb.append(e.getMessage());
+        }
         //insert a blank line
         sb.append(ls).append(ls);
         //technical information (currently the api level
