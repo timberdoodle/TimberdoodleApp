@@ -164,7 +164,7 @@ public class ErrorLoggingSingleton {
         try {
             sb.append(readLog());
         } catch(IOException e) {
-            sb.append(e.getMessage());
+            Log.w(TAG, e);
         }
         //insert a blank line
         sb.append(ls).append(ls);
