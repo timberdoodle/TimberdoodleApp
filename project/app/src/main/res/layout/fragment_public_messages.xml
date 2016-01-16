@@ -55,7 +55,7 @@
 
             <view
                 android:id="@+id/messageInputBox"
-                class="de.tu_darmstadt.timberdoodle.ui.MessageInputBox"
+                class="de.tudarmstadt.timberdoodle.ui.MessageInputBox"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content" />
 
