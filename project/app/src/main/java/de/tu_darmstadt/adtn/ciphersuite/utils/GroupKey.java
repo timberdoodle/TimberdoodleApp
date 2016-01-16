@@ -1,7 +1,6 @@
-package de.tu_darmstadt.adtn.ciphersuite.Utils;
+package de.tu_darmstadt.adtn.ciphersuite.utils;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 import javax.crypto.SecretKey;
 

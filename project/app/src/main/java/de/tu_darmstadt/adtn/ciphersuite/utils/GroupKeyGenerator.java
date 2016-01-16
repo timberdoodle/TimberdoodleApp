@@ -1,4 +1,4 @@
-package de.tu_darmstadt.adtn.ciphersuite.Utils;
+package de.tu_darmstadt.adtn.ciphersuite.utils;
 
 import java.security.Provider;
 
