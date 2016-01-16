@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteStatement;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Stores unencrypted incoming and outgoing messages. All methods are thread-safe.
@@ -180,12 +182,12 @@ public class MessageStore extends SQLiteOpenHelper implements IMessageStore {
                 new String[]{Integer.toString(count)});
 
         // Copy result to array and return it
-        Message[] messages = new Message[cursor.getCount()];
-        for (int i = 0; cursor.moveToNext(); ++i) {
-            messages[i] = new Message(cursor.getBlob(0), cursor.getBlob(1));
+        List<Message> messages = new ArrayList<>(cursor.getCount());
+        while (cursor.moveToNext()) {
+            messages.add(new Message(cursor.getBlob(0), cursor.getBlob(1)));
         }
         cursor.close();
-        return messages;
+        return messages.toArray(new Message[0]);  // TODO: change return type to List<Message>
     }
 
 
