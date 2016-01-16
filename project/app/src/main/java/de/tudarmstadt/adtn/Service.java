@@ -341,7 +341,7 @@ public class Service extends android.app.Service implements IService {
                 return true;
             }
         } catch (UnrecoverableKeyException e) {
-            return false; //NOSONAR
+            return false;
         }
     }
 
