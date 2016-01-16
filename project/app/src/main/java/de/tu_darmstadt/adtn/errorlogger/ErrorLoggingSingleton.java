@@ -42,8 +42,7 @@ public class ErrorLoggingSingleton {
      */
     public static ErrorLoggingSingleton getInstance() {
         if(instance == null){
-            if(instance == null)
-                instance = new ErrorLoggingSingleton();
+            instance = new ErrorLoggingSingleton();
         }
         return instance;
     }
