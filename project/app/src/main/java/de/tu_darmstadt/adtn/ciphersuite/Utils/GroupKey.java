@@ -1,5 +1,8 @@
 package de.tu_darmstadt.adtn.ciphersuite.Utils;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import javax.crypto.SecretKey;
 
 /**
@@ -81,7 +84,12 @@ public class GroupKey implements SecretKey, IGroupKey {
         else if(!(o instanceof GroupKey)) return false;
         else {
             GroupKey other = (GroupKey) o;
-            return (macKey.equals(other.getMACKey()) && cipherKey.equals(other.getCipherKey()));
+            return hashCode() == o.hashCode();
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new int[]{macKey.hashCode(), cipherKey.hashCode()});
     }
 }
