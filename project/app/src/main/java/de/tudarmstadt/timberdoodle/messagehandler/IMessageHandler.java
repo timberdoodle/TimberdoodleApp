@@ -7,13 +7,13 @@ import java.nio.charset.Charset;
  */
 public interface IMessageHandler {
 
-    String ACTION_HANDLE_RECEIVED_PUBLIC_CHAT_MESSAGE =
-            "de.tu_darmstadt.timberdoodle.messagehandler.IMessageHandler.ACTION_HANDLE_RECEIVED_PUBLIC_CHAT_MESSAGE";
-    String ACTION_HANDLE_RECEIVED_PRIVATE_CHAT_MESSAGE =
-            "de.tu_darmstadt.timberdoodle.messagehandler.IMessageHandler.ACTION_HANDLE_RECEIVED_PRIVATE_CHAT_MESSAGE";
+    static final String ACTION_HANDLE_RECEIVED_PUBLIC_CHAT_MESSAGE =
+            "de.tudarmstadt.timberdoodle.messagehandler.IMessageHandler.ACTION_HANDLE_RECEIVED_PUBLIC_CHAT_MESSAGE";
+    static final String ACTION_HANDLE_RECEIVED_PRIVATE_CHAT_MESSAGE =
+            "de.tudarmstadt.timberdoodle.messagehandler.IMessageHandler.ACTION_HANDLE_RECEIVED_PRIVATE_CHAT_MESSAGE";
 
-    String INTENT_ARG_ID = "id";
-    String INTENT_ARG_SENDER = "sender";
+    static final String INTENT_ARG_ID = "id";
+    static final String INTENT_ARG_SENDER = "sender";
 
     // Chat message handling
 

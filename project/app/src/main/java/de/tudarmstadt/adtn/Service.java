@@ -229,7 +229,7 @@ public class Service extends android.app.Service implements IService {
         if (async) {
             new Thread(runnable).start();
         } else {
-            runnable.run();
+            runnable.run(); //NOSONAR
         }
     }
 
