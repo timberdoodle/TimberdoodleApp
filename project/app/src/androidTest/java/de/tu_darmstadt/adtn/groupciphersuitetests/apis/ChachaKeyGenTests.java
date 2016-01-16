@@ -2,8 +2,8 @@ package de.tu_darmstadt.adtn.groupciphersuitetests.apis;
 
 import android.test.AndroidTestCase;
 
-import de.tu_darmstadt.adtn.ciphersuite.Utils.ISymmetricKeyGenerator;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.SymmetricKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.ISymmetricKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.SymmetricKeyGenerator;
 
 /**
  * Tests generation of ChaCha keys.

@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import javax.crypto.SecretKey;
 
-import de.tu_darmstadt.adtn.ciphersuite.Utils.GroupKey;
+import de.tu_darmstadt.adtn.ciphersuite.utils.GroupKey;
 import de.tu_darmstadt.adtn.ciphersuite.ciphers.IPublicMessageCipher;
 import de.tu_darmstadt.adtn.ciphersuite.hashes.IComputeMAC;
 

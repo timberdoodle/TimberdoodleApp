@@ -83,10 +83,5 @@ public class LocationPrivacy {
     private static void executeCmd(boolean enable) {
         final String commandEnable = "settings put global airplane_mode_on 1; am broadcast -a android.intent.action.AIRPLANE_MODE --ez state true";
         final String commandDisable = "settings put global airplane_mode_on 0; am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false";
-        try {
-            Utilities.runAsRoot(enable ? commandEnable : commandDisable);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

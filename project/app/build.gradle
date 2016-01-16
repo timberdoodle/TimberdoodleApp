@@ -4,6 +4,13 @@ plugins {
     id "org.sonarqube" version "1.2"
 }
 
+sonarqube {
+    properties {
+        property "sonar.scm.provider", "git"
+        property "sonar.sources", "src/main/java/de/tu_darmstadt/adtn"
+    }
+}
+
 apply plugin: 'com.android.application'
 
 android {

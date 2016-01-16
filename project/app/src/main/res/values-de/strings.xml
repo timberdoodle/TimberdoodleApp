@@ -15,7 +15,6 @@
     <string name="key_store_empty">Keine Schlüssel vorhanden</string>
 
     <!-- In Code Strings -->
-    <string name="warn_no_superuser">Achtung: Superuser-Rechte wurden nicht erteilt.</string>
     <string name="join_this_group">Wollen Sie dieser Gruppe beitreten?</string>
     <string name="checksum">Prüfsumme: %d</string>
     <string name="input_groupname">Neuen Gruppennamen eingeben</string>

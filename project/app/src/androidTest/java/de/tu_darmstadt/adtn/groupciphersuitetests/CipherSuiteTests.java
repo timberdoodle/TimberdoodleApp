@@ -10,7 +10,7 @@ import javax.crypto.SecretKey;
 
 import de.tu_darmstadt.adtn.ciphersuite.GroupCipherSuite;
 import de.tu_darmstadt.adtn.ciphersuite.IGroupCipher;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.IGroupKey;
+import de.tu_darmstadt.adtn.ciphersuite.utils.IGroupKey;
 import de.tu_darmstadt.adtn.errorlogger.ErrorLoggingSingleton;
 
 import static de.tu_darmstadt.adtn.groupciphersuitetests.utils.CipherSuiteTestsUtility.PLAINSIZE;

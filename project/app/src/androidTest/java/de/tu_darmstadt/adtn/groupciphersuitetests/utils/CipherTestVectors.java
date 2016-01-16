@@ -6,7 +6,7 @@ import java.util.List;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import de.tu_darmstadt.adtn.ciphersuite.Utils.GroupKey;
+import de.tu_darmstadt.adtn.ciphersuite.utils.GroupKey;
 
 /**
  * Test vectors for the cipher suite tests

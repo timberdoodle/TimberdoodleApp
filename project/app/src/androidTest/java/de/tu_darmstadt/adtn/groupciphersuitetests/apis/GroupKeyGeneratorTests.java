@@ -4,9 +4,9 @@ import android.test.AndroidTestCase;
 
 import javax.crypto.SecretKey;
 
-import de.tu_darmstadt.adtn.ciphersuite.Utils.GroupKey;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.GroupKeyGenerator;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.ISymmetricKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.GroupKey;
+import de.tu_darmstadt.adtn.ciphersuite.utils.GroupKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.ISymmetricKeyGenerator;
 import static de.tu_darmstadt.adtn.groupciphersuitetests.utils.CipherSuiteTestsUtility.*;
 import static de.tu_darmstadt.adtn.groupciphersuitetests.utils.CipherTestVectors.*;
 

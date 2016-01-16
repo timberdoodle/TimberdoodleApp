@@ -6,8 +6,8 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import javax.crypto.SecretKey;
 
-import de.tu_darmstadt.adtn.ciphersuite.Utils.ISymmetricKeyGenerator;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.SymmetricKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.ISymmetricKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.SymmetricKeyGenerator;
 import de.tu_darmstadt.adtn.errorlogger.ErrorLoggingSingleton;
 
 import static de.tu_darmstadt.adtn.groupciphersuitetests.utils.CipherSuiteTestsUtility.isClamped;

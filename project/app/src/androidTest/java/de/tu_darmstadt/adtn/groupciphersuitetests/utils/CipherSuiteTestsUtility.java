@@ -8,10 +8,10 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import de.tu_darmstadt.adtn.ciphersuite.PublicMessageEncryption;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.ISymmetricKeyGenerator;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.GroupKey;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.IGroupKey;
-import de.tu_darmstadt.adtn.ciphersuite.Utils.SymmetricKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.ISymmetricKeyGenerator;
+import de.tu_darmstadt.adtn.ciphersuite.utils.GroupKey;
+import de.tu_darmstadt.adtn.ciphersuite.utils.IGroupKey;
+import de.tu_darmstadt.adtn.ciphersuite.utils.SymmetricKeyGenerator;
 import de.tu_darmstadt.adtn.ciphersuite.ciphers.INonceGenerator;
 import de.tu_darmstadt.adtn.ciphersuite.ciphers.IPublicMessageCipher;
 import de.tu_darmstadt.adtn.ciphersuite.ciphers.PublicMessageCipherFactory;

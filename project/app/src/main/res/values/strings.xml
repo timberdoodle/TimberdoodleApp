@@ -14,7 +14,6 @@
     <string name="key_store_empty">List is empty.</string>
 
     <!-- In Code Strings -->
-    <string name="warn_no_superuser">Warning: Could not obtain superuser permissions.</string>
     <string name="join_this_group">Do you want to join this group?</string>
     <string name="checksum">Checksum: %d</string>
     <string name="input_groupname">Input new group name</string>

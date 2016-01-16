@@ -23,13 +23,6 @@ public class MessagingActivity extends TimberdoodleActivity {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         setContentView(R.layout.activity_messaging);
-
-        // Request root permissions when first shown
-        if (savedInstanceState == null) {
-            if (!Utilities.requestRootPermissions()) {
-                Toast.makeText(MessagingActivity.this, R.string.warn_no_superuser, Toast.LENGTH_LONG).show();
-            }
-        }
     }
 
     @Override
