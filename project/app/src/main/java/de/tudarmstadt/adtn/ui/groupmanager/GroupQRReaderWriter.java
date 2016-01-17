@@ -58,7 +58,7 @@ public class GroupQRReaderWriter extends QRReaderWriter {
      */
     public Bitmap createQrCode(IGroupCipher groupCipher, SecretKey groupKey, Instant timestamp,
                                int width, int height) {
-        return createQRCode(MAGIC_STRING +
+        return generateQRCode(MAGIC_STRING +
                 bytesToBase64(groupCipher.secretKeyToByteArray(groupKey)) +
                 String.format("%016x", timestamp.getMillis()), width, height);
     }

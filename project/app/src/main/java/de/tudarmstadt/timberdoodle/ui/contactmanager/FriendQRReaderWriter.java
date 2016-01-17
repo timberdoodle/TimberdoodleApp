@@ -22,7 +22,7 @@ public class FriendQRReaderWriter extends QRReaderWriter {
      */
     public Bitmap createQrCode(IFriendCipher friendCipher, PublicKey friendKey,
                                int width, int height) {
-        return createQRCode(MAGIC_STRING +
+        return generateQRCode(MAGIC_STRING +
                 bytesToBase64(friendCipher.publicKeyToByteArray(friendKey)), width, height);
     }
 

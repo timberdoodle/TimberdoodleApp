@@ -36,14 +36,14 @@ public class QRReaderWriter {
     }
 
     /**
-     * Creates a QR code bitmap with the specified dimensions from the specified string.
+     * Generates a QR code bitmap with the specified dimensions from the specified string.
      *
      * @param content The data the QR code should represent.
      * @param width   The preferred width of the bitmap.
      * @param height  The preferred height of the bitmap.
      * @return The bitmap containing the QR code.
      */
-    protected Bitmap createQRCode(String content, int width, int height) {
+    protected Bitmap generateQRCode(String content, int width, int height) {
         // Create BitMatrix from content string
         BitMatrix bitMatrix;
         QRCodeWriter writer = new QRCodeWriter();
