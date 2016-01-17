@@ -19,36 +19,37 @@ import de.tudarmstadt.adtn.errorlogger.ErrorLoggingSingleton;
 public class GroupCipherSuite implements IGroupCipher {
 
     private final int cipherSize;
-    private final String cipherAlgorithm = "ChaCha";
-    private final String macAlgorithm = "Poly1305-AES";
-    private final int nonceLengthCipher = 8;
-    private final int nonceLengthMAC = 16;
-    private final int cipherKeySize = 256, macKeySize = 256;
+    private static final String CIPHER_ALGORITHM = "ChaCha";
+    private static final String MAC_ALGORITHM = "Poly1305-AES";
+    private static final int NONCE_LENGTH_CIPHER = 8;
+    private static final int NONCE_LENGTH_MAC = 16;
+    private static final int CIPHER_KEY_SIZE = 256;
+    private static final int MAC_KEY_SIZE = 256;
 
     private PublicMessageDecryption decryptor = null;
     private PublicMessageEncryption encryptor = null;
 
     public GroupCipherSuite(int sizeOfPlaintext) {
         try {
-            cipherSize = ComputeMacFactory.getInstance().length() + nonceLengthMAC + sizeOfPlaintext;
+            cipherSize = ComputeMacFactory.getInstance().length() + NONCE_LENGTH_MAC + sizeOfPlaintext;
             IComputeMAC mac = ComputeMacFactory.getInstance();
-            INonceGenerator nonce = PublicMessageCipherFactory.getNonceGenerator(nonceLengthMAC);
+            INonceGenerator nonce = PublicMessageCipherFactory.getNonceGenerator(NONCE_LENGTH_MAC);
             encryptor = new PublicMessageEncryption(
                     mac,
-                    PublicMessageCipherFactory.getPublicMessageCipherInstance(cipherAlgorithm, Ciphermode.ENCRYPT, nonceLengthCipher),
+                    PublicMessageCipherFactory.getPublicMessageCipherInstance(CIPHER_ALGORITHM, Ciphermode.ENCRYPT, NONCE_LENGTH_CIPHER),
                     nonce,
                     0,
                     mac.length(),
-                    mac.length() + nonceLengthMAC,
+                    mac.length() + NONCE_LENGTH_MAC,
                     cipherSize
             );
             decryptor = new PublicMessageDecryption(
                     mac,
-                    PublicMessageCipherFactory.getPublicMessageCipherInstance(cipherAlgorithm, Ciphermode.DECRYPT, nonceLengthCipher),
-                    nonceLengthMAC,
+                    PublicMessageCipherFactory.getPublicMessageCipherInstance(CIPHER_ALGORITHM, Ciphermode.DECRYPT, NONCE_LENGTH_CIPHER),
+                    NONCE_LENGTH_MAC,
                     0,
                     mac.length(),
-                    mac.length() + nonceLengthMAC,
+                    mac.length() + NONCE_LENGTH_MAC,
                     sizeOfPlaintext
             );
         } catch (Exception e) {
@@ -76,8 +77,8 @@ public class GroupCipherSuite implements IGroupCipher {
      */
     @Override
     public SecretKey generateKey() {
-        GroupKeyGenerator keyGenerator = new GroupKeyGenerator(cipherAlgorithm,
-                cipherKeySize, macAlgorithm, macKeySize);
+        GroupKeyGenerator keyGenerator = new GroupKeyGenerator(CIPHER_ALGORITHM,
+                CIPHER_KEY_SIZE, MAC_ALGORITHM, MAC_KEY_SIZE);
         return keyGenerator.generateKey();
     }
 
@@ -115,8 +116,8 @@ public class GroupCipherSuite implements IGroupCipher {
      */
     @Override
     public SecretKey byteArrayToSecretKey(byte[] keybytes) {
-        GroupKeyGenerator keyGenerator = new GroupKeyGenerator(cipherAlgorithm,
-                cipherKeySize, macAlgorithm, macKeySize);
+        GroupKeyGenerator keyGenerator = new GroupKeyGenerator(CIPHER_ALGORITHM,
+                CIPHER_KEY_SIZE, MAC_ALGORITHM, MAC_KEY_SIZE);
         return keyGenerator.readKeyFromByteArray(keybytes);
     }
 
@@ -136,6 +137,6 @@ public class GroupCipherSuite implements IGroupCipher {
      */
     @Override
     public int getEncodedKeySize() {
-        return cipherKeySize/8 + macKeySize/8;
+        return CIPHER_KEY_SIZE /8 + MAC_KEY_SIZE /8;
     }
 }

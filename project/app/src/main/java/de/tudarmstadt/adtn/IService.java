@@ -22,7 +22,7 @@ public interface IService {
     /**
      * Stops receiving messages and processing the sending pool.
      */
-    void stopNetworking();
+     void stopNetworking();
 
     /**
      * @return The current networking status.
