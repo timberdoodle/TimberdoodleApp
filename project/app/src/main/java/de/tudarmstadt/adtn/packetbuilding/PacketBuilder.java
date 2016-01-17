@@ -111,11 +111,15 @@ public class PacketBuilder implements IPacketBuilder {
         byte[] packedMessage = cipher.tryDecrypt(packet, keys);
 
         // Decryption failed with every key?
-        if (packedMessage == null) return null;
+        if (packedMessage == null) {
+            return null;
+        }
 
         // Remove header and padding
         int length = packedMessage[0] & 0xff | packedMessage[1] << 8 & 0xff00;
-        if (length < 1 || length > maxMessageSize) return null; // Ignore malformed packets
+        if (length < 1 || length > maxMessageSize) {
+            return null; // Ignore malformed packets
+        }
         return Arrays.copyOfRange(packedMessage, HEADER_SIZE, HEADER_SIZE + length);
     }
 }
