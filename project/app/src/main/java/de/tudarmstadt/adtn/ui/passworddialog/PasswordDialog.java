@@ -314,31 +314,27 @@ public abstract class PasswordDialog {
     /**
      * @return The string resource ID for setting an initial password.
      */
-    protected abstract
     @StringRes
-    int getSetPasswordString();
+    protected abstract int getSetPasswordString();
 
     /**
      * @return The string resource ID for the first attempt of entering the password of an existing
      * key store.
      */
-    protected abstract
     @StringRes
-    int getEnterPasswordString();
+    protected abstract int getEnterPasswordString();
 
     /**
      * @return The string resource ID for asking the user if he wants to create a new key store
      * instead of opening the old one.
      */
-    protected abstract
     @StringRes
-    int getResetPasswordString();
+    protected abstract int getResetPasswordString();
 
     /**
      * @return The string resource ID for asking the user if he really wants to continue with a
      * locked key store.
      */
-    protected abstract
     @StringRes
-    int getContinueWithoutStoreWarningString();
+    protected abstract int getContinueWithoutStoreWarningString();
 }
