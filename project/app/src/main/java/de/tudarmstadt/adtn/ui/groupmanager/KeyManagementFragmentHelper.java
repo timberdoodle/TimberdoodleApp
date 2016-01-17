@@ -54,7 +54,9 @@ public class KeyManagementFragmentHelper {
         // Preselect (i.e. scroll to) key entry (if specified)
         if (preselectId != 0) {
             int position = listAdapter.getPosition(preselectId);
-            if (position != -1) listView.smoothScrollToPosition(position);
+            if (position != -1) {
+                listView.smoothScrollToPosition(position);
+            }
         }
     }
 
@@ -83,11 +85,11 @@ public class KeyManagementFragmentHelper {
             public void onItemClick(AdapterView<?> parent, View view, final int position, final long id) {
                 // Create dialog items
                 ArrayList<String> items = new ArrayList<>(3);
-                final int ITEMINDEX_RENAME = items.size();
+                final int itemindexRename = items.size();
                 items.add(context.getString(R.string.menu_rename));
-                final int ITEMINDEX_DELETE = items.size();
+                final int itemindexDelete = items.size();
                 items.add(context.getString(R.string.menu_delete));
-                final int ITEMINDEX_SHARE = items.size();
+                final int itemindexShare = items.size();
                 if (keyManagement.allowSharing(id)) {
                     items.add(context.getString(R.string.menu_share));
                 }
@@ -98,11 +100,11 @@ public class KeyManagementFragmentHelper {
                 builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (which == ITEMINDEX_RENAME) {
+                        if (which == itemindexRename) {
                             showRename(id);
-                        } else if (which == ITEMINDEX_DELETE) {
+                        } else if (which == itemindexDelete) {
                             showConfirmDeleteEntries(Collections.singleton(id), null);
-                        } else if (which == ITEMINDEX_SHARE) {
+                        } else if (which == itemindexShare) {
                             keyManagement.shareKey(id);
                         }
                     }
@@ -151,7 +153,9 @@ public class KeyManagementFragmentHelper {
 
                 SparseBooleanArray booleanArray = listView.getCheckedItemPositions();
                 for (int i = 0; i < listView.getCount(); i++) {
-                    if (booleanArray.get(i)) selectedIds.add(listView.getItemIdAtPosition(i));
+                    if (booleanArray.get(i)) {
+                        selectedIds.add(listView.getItemIdAtPosition(i));
+                    }
                 }
 
                 return selectedIds;
@@ -211,7 +215,9 @@ public class KeyManagementFragmentHelper {
                 }
                 Toast.makeText(context, confirmationMessage, Toast.LENGTH_LONG).show();
 
-                if (actionMode != null) actionMode.finish();
+                if (actionMode != null) {
+                    actionMode.finish();
+                }
             }
         });
 
