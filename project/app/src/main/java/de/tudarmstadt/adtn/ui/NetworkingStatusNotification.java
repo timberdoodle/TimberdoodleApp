@@ -17,7 +17,7 @@ import de.tudarmstadt.timberdoodle.R;
  */
 public class NetworkingStatusNotification {
 
-    private final static int NOTIFICATION_ID = 2;
+    private static final int NOTIFICATION_ID = 2;
 
     private final Context context;
     private final NotificationManager notificationManager;
