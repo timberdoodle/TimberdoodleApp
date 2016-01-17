@@ -102,7 +102,9 @@ public class KeyListAdapter extends BaseAdapter {
      */
     public String getAliasById(long id) {
         for (KeyStoreEntry<?> entry : entries) {
-            if (entry.getId() == id) return entry.getAlias();
+            if (entry.getId() == id) {
+                return entry.getAlias();
+            }
         }
         return null;
     }
@@ -115,7 +117,9 @@ public class KeyListAdapter extends BaseAdapter {
      */
     public int getPosition(long id) {
         for (int i = 0; i < entries.length; ++i) {
-            if (entries[i].getId() == id) return i;
+            if (entries[i].getId() == id) {
+                return i;
+            }
         }
         return -1;
     }
