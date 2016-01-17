@@ -24,7 +24,9 @@ public abstract class AdtnFragment extends BaseFragment {
             AdtnFragment.this.adtnService = ((Service.LocalBinder) service).getService();
             onAdtnServiceReady(adtnService);
             View view = getView();
-            if (view != null) onViewAndAdtnServiceReady(view, adtnService);
+            if (view != null) {
+                onViewAndAdtnServiceReady(view, adtnService);
+            }
         }
 
         @Override
@@ -35,6 +37,7 @@ public abstract class AdtnFragment extends BaseFragment {
 
     // Reference to the ADTN service. null if not ready yet.
     private IService adtnService;
+    boolean wasPaused = false;
 
     @Override
     public void onAttach(Activity activity) {
@@ -58,7 +61,9 @@ public abstract class AdtnFragment extends BaseFragment {
      * @param view The created view.
      */
     public void setViewReady(View view) {
-        if (adtnService != null) onViewAndAdtnServiceReady(view, adtnService);
+        if (adtnService != null) {
+            onViewAndAdtnServiceReady(view, adtnService);
+        }
     }
 
     /**
@@ -87,8 +92,6 @@ public abstract class AdtnFragment extends BaseFragment {
     protected IService getAdtnService() {
         return adtnService;
     }
-
-    boolean wasPaused = false;
 
     @Override
     public void onResume() {
