@@ -30,58 +30,30 @@ import de.tudarmstadt.timberdoodle.R;
  */
 public class Service extends android.app.Service implements IService {
 
-    //region Service binding
+    private static final String GROUP_KEY_STORE_FILENAME = "network_group_keys";
+    private static final long GROUP_KEY_SHARE_EXPIRATION_INTERVAL = (long) 5 * 60000; // 5 minutes
 
-    /**
-     * A binder to obtain the service object once the service is started.
-     */
-    public class LocalBinder extends Binder {
-        /**
-         * @return The service object.
-         */
-        public Service getService() {
-            return Service.this;
-        }
-    }
-
-    // The binder that gets returned in onBind()
     private final LocalBinder binder = new LocalBinder();
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return binder;
-    }
-
-    //endregion
-
+    private final Object groupKeyStoreLock = new Object();
+    private final Object networkingStartStopLock = new Object();
+    
     private IPreferences preferences;
-
-    // Sending and receiving
     private IMessageStore messageStore;
     private IPacketBuilder packetBuilder;
     private ISendingPool sendingPool;
     private Thread receiveThread;
     private volatile boolean stopReceiving;
-
-    // Encryption
     private IGroupCipher groupCipher;
-
-    // Key store
-    private final static String GROUP_KEY_STORE_FILENAME = "network_group_keys";
-    private final Object groupKeyStoreLock = new Object();
     private IGroupKeyStore groupKeyStore;
-
-    // Group key share expiration
-    private final static long GROUP_KEY_SHARE_EXPIRATION_INTERVAL = 5 * 60000; // 5 minutes
     private IGroupKeyShareExpirationManager expirationManager;
-
-    // Networking state
-    private final Object networkingStartStopLock = new Object();
     private volatile NetworkingStatus networkingStatus;
     private NetworkingStatusNotification statusNotification;
-
-    // For sending message arrival broadcast intents to other application components
     private LocalBroadcastManager broadcastManager;
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return binder;
+    }
 
     @Override
     public void onCreate() {
@@ -390,5 +362,17 @@ public class Service extends android.app.Service implements IService {
     @Override
     public boolean groupKeyStoreExists() {
         return getGroupKeyStore() != null || getFileStreamPath(GROUP_KEY_STORE_FILENAME).exists();
+    }
+
+    /**
+     * A binder to obtain the service object once the service is started.
+     */
+    public class LocalBinder extends Binder {
+        /**
+         * @return The service object.
+         */
+        public Service getService() {
+            return Service.this;
+        }
     }
 }
