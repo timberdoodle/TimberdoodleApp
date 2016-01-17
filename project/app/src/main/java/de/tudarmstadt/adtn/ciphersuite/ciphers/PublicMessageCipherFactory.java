@@ -10,6 +10,8 @@ import javax.crypto.Cipher;
  */
 public class PublicMessageCipherFactory {
 
+    private PublicMessageCipherFactory() {}
+    
     /**
      * Instantiates and returns an IPublicMessageCipher instance.
      *
