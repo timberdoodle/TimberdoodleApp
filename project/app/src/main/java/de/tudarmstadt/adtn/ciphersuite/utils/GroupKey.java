@@ -9,7 +9,8 @@ import javax.crypto.SecretKey;
  */
 public class GroupKey implements SecretKey, IGroupKey {
 
-    private final SecretKey cipherKey, macKey;
+    private final SecretKey cipherKey;
+    private final SecretKey macKey;
 
     public GroupKey(SecretKey cipherKey, SecretKey macKey) {
         this.cipherKey = cipherKey;
