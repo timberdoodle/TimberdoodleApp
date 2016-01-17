@@ -72,7 +72,9 @@ public class ScanGroupKeyFragment extends GroupManagerFragment {
         IService service = getAdtnService();
 
         // Service and QR data have to be available
-        if (service == null || qrData == null) return;
+        if (service == null || qrData == null) {
+            return;
+        }
 
         // Parse key
         IGroupCipher cipher = getAdtnService().getGroupCipher();
