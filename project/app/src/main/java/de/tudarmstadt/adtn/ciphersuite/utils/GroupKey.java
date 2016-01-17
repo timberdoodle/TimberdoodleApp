@@ -87,7 +87,6 @@ public class GroupKey implements SecretKey, IGroupKey {
             return false;
         }
         else {
-            GroupKey other = (GroupKey) o;
             return hashCode() == o.hashCode();
         }
     }
