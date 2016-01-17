@@ -1,5 +1,6 @@
 package de.tudarmstadt.adtn.ciphersuite.hashes;
 
+import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 
 import javax.crypto.Mac;
@@ -16,7 +17,7 @@ public class Poly1305 implements IComputeMAC {
 
     private Mac messageAuthenticationCode;
 
-    public Poly1305() throws Exception {
+    public Poly1305() throws NoSuchAlgorithmException {
         this.messageAuthenticationCode = Mac.getInstance("Poly1305-AES", new org.spongycastle.jce.provider.BouncyCastleProvider());
     }
 

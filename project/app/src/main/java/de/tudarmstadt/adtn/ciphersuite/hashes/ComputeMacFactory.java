@@ -1,6 +1,8 @@
 package de.tudarmstadt.adtn.ciphersuite.hashes;
 
 
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Factory to instantiate an IComputeMAC instance
  */
@@ -15,8 +17,9 @@ public class ComputeMacFactory {
      * Instantiates and returns an IComputeMAC instance
      *
      * @return IComputeMAC
+     * @throws NoSuchAlgorithmException
      */
-    public static IComputeMAC getInstance() throws Exception {
+    public static IComputeMAC getInstance() throws NoSuchAlgorithmException {
         if(mac == null){
             mac = new Poly1305();
         }
@@ -26,9 +29,9 @@ public class ComputeMacFactory {
     /**
      * Returns the length of the underlying message authentication code
      * @return returns the length in bytes
-     * @throws Exception
+     * @throws NoSuchAlgorithmException
      */
-    public static int getLength() throws Exception{
+    public static int getLength() throws NoSuchAlgorithmException{
         if(mac == null){
             mac = new Poly1305();
         }
