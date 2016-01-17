@@ -27,6 +27,7 @@ public class SymmetricKeyGenerator implements ISymmetricKeyGenerator{
     /**
      * {@inheritDoc}
      */
+    @Override
     public SecretKey generateKey() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm, serviceProvider);
