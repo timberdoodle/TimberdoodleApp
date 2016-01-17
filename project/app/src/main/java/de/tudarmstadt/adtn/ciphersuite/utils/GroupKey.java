@@ -82,8 +82,9 @@ public class GroupKey implements SecretKey, IGroupKey {
      */
     @Override
     public boolean equals(Object o) {
-        if(o == null) return false;
-        else if(!(o instanceof GroupKey)) return false;
+        if(o == null || !(o instanceof GroupKey)) {
+            return false;
+        }
         else {
             GroupKey other = (GroupKey) o;
             return hashCode() == o.hashCode();
