@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,6 +16,8 @@ import java.util.List;
  * Stores unencrypted incoming and outgoing messages. All methods are thread-safe.
  */
 public class MessageStore extends SQLiteOpenHelper implements IMessageStore {
+
+    private static final String TAG = "MessageStore";
 
     private static final String TABLE_NAME = "messages";
     private static final String COLUMN_FINGERPRINT = "fingerprint";
@@ -47,7 +50,8 @@ public class MessageStore extends SQLiteOpenHelper implements IMessageStore {
         try {
             md5 = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e); // Cannot happen since MD5 is always available
+            // Should not happen since MD5 is always available.
+            Log.wtf(TAG, e.getMessage(), e);
         }
 
         // Precompile SQLite queries
