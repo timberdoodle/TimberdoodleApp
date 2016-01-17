@@ -117,7 +117,9 @@ public class Service extends android.app.Service implements IService {
         stopNetworking(null, false);
         expirationManager.store();
         IGroupKeyStore keyStore = getGroupKeyStore();
-        if (keyStore != null) keyStore.save();
+        if (keyStore != null) {
+            keyStore.save();
+        }
         messageStore.close();
 
         super.onDestroy();
@@ -130,7 +132,9 @@ public class Service extends android.app.Service implements IService {
     public void startNetworking() {
         synchronized (networkingStartStopLock) {
             // Do nothing if already started
-            if (networkingStatus.getStatus() == NetworkingStatus.STATUS_ENABLED) return;
+            if (networkingStatus.getStatus() == NetworkingStatus.STATUS_ENABLED)  {
+                return;
+            }
 
             // Check if group key store is present
             if (getGroupKeyStore() == null) {
@@ -206,7 +210,9 @@ public class Service extends android.app.Service implements IService {
             public void run() {
                 synchronized (networkingStartStopLock) {
                     // Do nothing if already stopped
-                    if (networkingStatus.getStatus() != NetworkingStatus.STATUS_ENABLED) return;
+                    if (networkingStatus.getStatus() != NetworkingStatus.STATUS_ENABLED) {
+                        return;
+                    }
 
                     // Stop sending and receiving
                     sendingPool.close();
@@ -263,10 +269,14 @@ public class Service extends android.app.Service implements IService {
 
             // Try to decrypt. Skip if not possible.
             byte[] unpacked = packetBuilder.tryUnpackPacket(receiveBuffer, groupKeyStore.getKeys());
-            if (unpacked == null) continue;
+            if (unpacked == null) {
+                continue;
+            }
 
             // Ignore if already received
-            if (messageStore.receivedMessage(unpacked)) continue;
+            if (messageStore.receivedMessage(unpacked)) {
+                continue;
+            }
 
             // Notify of message arrival via broadcast intent
             Intent intent = new Intent(ACTION_HANDLE_RECEIVED_MESSAGE);
@@ -287,7 +297,9 @@ public class Service extends android.app.Service implements IService {
                 currentThreadWasInterrupted = true;
             }
         }
-        if (currentThreadWasInterrupted) Thread.currentThread().interrupt();
+        if (currentThreadWasInterrupted) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     /**
@@ -335,7 +347,9 @@ public class Service extends android.app.Service implements IService {
         try {
             synchronized (groupKeyStoreLock) {
                 // Do nothing if already loaded
-                if (groupKeyStore != null) return true;
+                if (groupKeyStore != null) {
+                    return true;
+                }
 
                 groupKeyStore = new GroupKeyStore(this, groupCipher, GROUP_KEY_STORE_FILENAME, password, false);
                 return true;
@@ -357,7 +371,9 @@ public class Service extends android.app.Service implements IService {
         try {
             synchronized (groupKeyStoreLock) {
                 // Do nothing if already loaded
-                if (groupKeyStore != null) return;
+                if (groupKeyStore != null) {
+                    return;
+                }
 
                 groupKeyStore = new GroupKeyStore(this, groupCipher, GROUP_KEY_STORE_FILENAME, password, true);
             }
