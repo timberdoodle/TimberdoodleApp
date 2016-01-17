@@ -1,5 +1,6 @@
 package de.tudarmstadt.adtn.ciphersuite.utils;
 
+import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 
 import javax.crypto.KeyGenerator;
@@ -33,11 +34,11 @@ public class SymmetricKeyGenerator implements ISymmetricKeyGenerator{
             KeyGenerator keyGenerator = KeyGenerator.getInstance(algorithm, serviceProvider);
             keyGenerator.init(keyLength);
             return keyGenerator.generateKey();
-        } catch (Exception e) {
+        } catch (NoSuchAlgorithmException e) {
             //Error logging
             ErrorLoggingSingleton log = ErrorLoggingSingleton.getInstance();
             log.storeError(ErrorLoggingSingleton.getExceptionStackTraceAsFormattedString(e));
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
