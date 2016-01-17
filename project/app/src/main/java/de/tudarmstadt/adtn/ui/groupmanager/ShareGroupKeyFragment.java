@@ -60,8 +60,8 @@ public class ShareGroupKeyFragment extends GroupManagerFragment {
         textView.setText(getString(R.string.checksum, checksum));
 
         // Create and show the QR code
-        Bitmap QRCode = new GroupQRReaderWriter().createQrCode(cipher, secretKey, dateTime, 200, 200);
+        Bitmap qrCode = new GroupQRReaderWriter().createQrCode(cipher, secretKey, dateTime, 200, 200);
         ImageView imageView = (ImageView) view.findViewById(R.id.qrCodeView);
-        imageView.setImageBitmap(QRCode);
+        imageView.setImageBitmap(qrCode);
     }
 }
