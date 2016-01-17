@@ -14,7 +14,7 @@ import de.tudarmstadt.adtn.ciphersuite.IGroupCipher;
 public class PacketBuilder implements IPacketBuilder {
 
     // Header consists only of message length
-    private final static int HEADER_SIZE = 2;
+    private static final int HEADER_SIZE = 2;
 
     private final int maxMessageSize;
     private final int unencryptedPacketSize;
