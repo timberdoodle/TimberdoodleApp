@@ -47,10 +47,8 @@ public class PublicMessageCipherImpl implements IPublicMessageCipher {
     @Override
     public void doFinalOptimized(byte[] ivBytes, SecretKey key, byte[] text, int textOffset, byte[] outBuffer, int outOffset) {
         try {
-            //int outOff = outOffset;
             AlgorithmParameterSpec ivSpec = new IvParameterSpec(ivBytes);
             cipher.init(mode, key, ivSpec);
-            //outOff += cipher.update(text, textOffset, text.length - textOffset, outBuffer, outOffset);
             cipher.doFinal(text, textOffset, text.length - textOffset, outBuffer, outOffset);
         } catch (BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException | InvalidKeyException | ShortBufferException e) {
             throw new RuntimeException(e);
