@@ -54,11 +54,11 @@ public class QRReaderWriter {
         }
 
         // Create bitmap from BitMatrix
-        width = bitMatrix.getWidth();
-        height = bitMatrix.getHeight();
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-        for (int y = 0; y < height; ++y) {
-            for (int x = 0; x < width; ++x) {
+        int bitmapWidth = bitMatrix.getWidth();
+        int bitmapHeight = bitMatrix.getHeight();
+        Bitmap bitmap = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.RGB_565);
+        for (int y = 0; y < bitmapHeight; ++y) {
+            for (int x = 0; x < bitmapWidth; ++x) {
                 bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
             }
         }
