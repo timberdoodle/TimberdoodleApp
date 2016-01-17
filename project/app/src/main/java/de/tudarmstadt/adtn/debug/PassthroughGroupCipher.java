@@ -13,8 +13,8 @@ import de.tudarmstadt.adtn.ciphersuite.IGroupCipher;
  */
 public class PassthroughGroupCipher implements IGroupCipher {
 
-    private final static String ALGORITHM_NAME = "DummyCipherPassthrough";
-    private final static byte[] MAGIC_BYTES = {(byte) 0xC8, (byte) 0xAA, (byte) 0xEC, 0x31, 0x08, 0x04, (byte) 0xB6, (byte) 0xB4};
+    private static final String ALGORITHM_NAME = "DummyCipherPassthrough";
+    private static final byte[] MAGIC_BYTES = {(byte) 0xC8, (byte) 0xAA, (byte) 0xEC, 0x31, 0x08, 0x04, (byte) 0xB6, (byte) 0xB4};
 
     private final int plaintextSize, ciphertextSize;
 
