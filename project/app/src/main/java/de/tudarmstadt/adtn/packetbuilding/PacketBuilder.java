@@ -111,8 +111,8 @@ public class PacketBuilder implements IPacketBuilder {
         byte[] packedMessage = cipher.tryDecrypt(packet, keys);
 
         // Decryption failed with every key?
-        if (packedMessage == null) {
-            return new byte[0];
+        if (packedMessage.length == 0) {
+            return packedMessage;
         }
 
         // Remove header and padding

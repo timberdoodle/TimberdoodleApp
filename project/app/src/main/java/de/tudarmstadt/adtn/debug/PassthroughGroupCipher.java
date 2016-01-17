@@ -62,7 +62,7 @@ public class PassthroughGroupCipher implements IGroupCipher {
         // Check if ciphertext starts with MAGIC_BYTES
         for (int i = 0; i < MAGIC_BYTES.length; ++i) {
             if (ciphertext[i] != MAGIC_BYTES[i]) {
-                return null;
+                return new byte[0];
             }
         }
 
