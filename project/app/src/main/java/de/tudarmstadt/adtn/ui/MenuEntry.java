@@ -21,10 +21,8 @@ public class MenuEntry {
          */
         boolean onClick(Context context);
     }
-
-    private final
     @StringRes
-    int caption;
+    private final int caption;
     private final int icon;
     private final OnClickListener listener;
 
@@ -61,9 +59,8 @@ public class MenuEntry {
     /**
      * @return The string ID of the entry's caption.
      */
-    public
     @StringRes
-    int getCaption() {
+    public int getCaption() {
         return caption;
     }
 
