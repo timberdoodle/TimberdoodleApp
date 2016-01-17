@@ -36,7 +36,7 @@ public class Service extends android.app.Service implements IService {
     private final LocalBinder binder = new LocalBinder();
     private final Object groupKeyStoreLock = new Object();
     private final Object networkingStartStopLock = new Object();
-    
+
     private IPreferences preferences;
     private IMessageStore messageStore;
     private IPacketBuilder packetBuilder;
@@ -119,7 +119,7 @@ public class Service extends android.app.Service implements IService {
 
 
             // Create socket, message store and sending pool
-
+            // TODO
 
             // Start receiving
             stopReceiving = false;
@@ -181,23 +181,16 @@ public class Service extends android.app.Service implements IService {
             @Override
             public void run() {
                 synchronized (networkingStartStopLock) {
-                    // Do nothing if already stopped
                     if (networkingStatus.getStatus() != NetworkingStatus.STATUS_ENABLED) {
                         return;
                     }
-
-                    // Stop sending and receiving
                     sendingPool.close();
                     stopReceiving = true;
-
                     joinReceiveThread();
 
-                    // Stop ad-hoc auto-connect
+                    // TODO: Stop ad-hoc auto-connect
 
-
-                    // Stop service if no one binds to it
                     stopSelf();
-
                     setNetworkingStatus(false, errorMessage);
                 }
             }
