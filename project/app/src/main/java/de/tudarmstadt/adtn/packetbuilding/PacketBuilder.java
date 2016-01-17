@@ -103,7 +103,7 @@ public class PacketBuilder implements IPacketBuilder {
      *
      * @param packet The encrypted packet.
      * @param keys   List of keys to use for trying to decrypt the packet.
-     * @return The decrypted message on success or null otherwise.
+     * @return The decrypted message on success or empty byte array otherwise.
      */
     @Override
     public byte[] tryUnpackPacket(byte[] packet, Collection<SecretKey> keys) {
@@ -112,13 +112,13 @@ public class PacketBuilder implements IPacketBuilder {
 
         // Decryption failed with every key?
         if (packedMessage == null) {
-            return null;
+            return new byte[0];
         }
 
         // Remove header and padding
         int length = packedMessage[0] & 0xff | packedMessage[1] << 8 & 0xff00;
         if (length < 1 || length > maxMessageSize) {
-            return null; // Ignore malformed packets
+            return new byte[0]; // Ignore malformed packets
         }
         return Arrays.copyOfRange(packedMessage, HEADER_SIZE, HEADER_SIZE + length);
     }

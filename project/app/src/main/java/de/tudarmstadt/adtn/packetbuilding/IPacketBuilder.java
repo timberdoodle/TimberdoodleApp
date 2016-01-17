@@ -49,7 +49,7 @@ public interface IPacketBuilder {
      *
      * @param packet The encrypted packet.
      * @param keys   List of keys to use for trying to decrypt the packet.
-     * @return The decrypted message on success or null otherwise.
+     * @return The decrypted message on success or empty byte array otherwise.
      */
     byte[] tryUnpackPacket(byte[] packet, Collection<SecretKey> keys);
 }

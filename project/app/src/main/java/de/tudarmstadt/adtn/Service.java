@@ -234,7 +234,7 @@ public class Service extends android.app.Service implements IService {
             // Try to decrypt
             byte[] unpacked = packetBuilder.tryUnpackPacket(receiveBuffer, groupKeyStore.getSecretKeys());
             // If decryption successful and message not yet in store
-            if (unpacked != null && !(messageStore.receivedMessage(unpacked))) {
+            if (unpacked.length > 0 && !(messageStore.receivedMessage(unpacked))) {
                 // Notify of message arrival via broadcast intent
                 Intent intent = new Intent(ACTION_HANDLE_RECEIVED_MESSAGE);
                 intent.putExtra(INTENT_ARG_HEADER, unpacked[0]);
