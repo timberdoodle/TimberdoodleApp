@@ -25,11 +25,8 @@ import de.tudarmstadt.timberdoodle.R;
  */
 public class GroupKeyManagementFragment extends GroupManagerFragment {
 
-    // Needed for anonymous class implementation in onViewAndAdtnServiceReady.
-    private abstract class GroupKeyManagement extends GroupAliasDialogData implements IKeyManagement {
-    }
-
     private static final String ARGNAME_PRESELECT = "preselect";
+    private KeyManagementFragmentHelper helper;
 
     /**
      * Creates a new GroupKeyManagementFragment.
@@ -54,8 +51,6 @@ public class GroupKeyManagementFragment extends GroupManagerFragment {
         fragment.setArguments(args);
         return fragment;
     }
-
-    private KeyManagementFragmentHelper helper;
 
     @Nullable
     @Override
@@ -167,5 +162,9 @@ public class GroupKeyManagementFragment extends GroupManagerFragment {
                 });
             }
         }, service).show();
+    }
+
+    // Needed for anonymous class implementation in onViewAndAdtnServiceReady.
+    private abstract class GroupKeyManagement extends GroupAliasDialogData implements IKeyManagement {
     }
 }
