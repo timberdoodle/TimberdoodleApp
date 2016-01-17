@@ -45,7 +45,7 @@ public class GroupQRReaderWriter extends QRReaderWriter {
         }
     }
 
-    private final static String MAGIC_STRING = "iN6qKVeG";
+    private static final String MAGIC_STRING = "iN6qKVeG";
 
     /**
      * Creates a QR code bitmap from a group key.
@@ -73,13 +73,17 @@ public class GroupQRReaderWriter extends QRReaderWriter {
     public ScannedGroupKey parseCode(String code, IGroupCipher cipher) {
         try {
             // Check if magic string of group key QR code is present
-            if (!code.startsWith(MAGIC_STRING)) return null;
+            if (!code.startsWith(MAGIC_STRING)) {
+                return null;
+            }
 
             // Check size of code
             final int magicLen = MAGIC_STRING.length();
             final int keyBase64Len = getBase64StringLength(cipher.getEncodedKeySize());
             final int timestampLen = 16; // Zero-padded hex long
-            if (code.length() < magicLen + keyBase64Len + timestampLen) return null;
+            if (code.length() < magicLen + keyBase64Len + timestampLen) {
+                return null;
+            }
 
             // Decode key
             String base64Key = code.substring(magicLen, magicLen + keyBase64Len);
