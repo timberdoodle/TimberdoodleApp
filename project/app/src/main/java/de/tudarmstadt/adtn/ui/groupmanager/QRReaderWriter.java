@@ -17,7 +17,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
  */
 public class QRReaderWriter {
 
-    private final static int BASE64_FLAGS = Base64.NO_PADDING | Base64.NO_WRAP;
+    private static final int BASE64_FLAGS = Base64.NO_PADDING | Base64.NO_WRAP;
 
     /**
      * Launches the ZXing QR code scanner.
