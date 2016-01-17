@@ -16,15 +16,16 @@ import java.util.List;
  */
 public class MessageStore extends SQLiteOpenHelper implements IMessageStore {
 
-    private final static String TABLE_NAME = "messages";
-    private final static String COLUMN_FINGERPRINT = "fingerprint";
-    private final static String COLUMN_MESSAGE = "message";
+    private static final String TABLE_NAME = "messages";
+    private static final String COLUMN_FINGERPRINT = "fingerprint";
+    private static final String COLUMN_MESSAGE = "message";
     private static final String COLUMN_TIMES_SENT = "times_sent";
     private static final String COLUMN_TIMES_RECEIVED = "times_received";
     private static final String COLUMN_FIRST_TIME_SENT = "first_time_sent";
     private static final String COLUMN_FIRST_TIME_RECEIVED = "first_time_received";
     private static final String COLUMN_LAST_TIME_RECEIVED = "last_time_received";
     private static final String COLUMN_LAST_TIME_SENT = "last_time_sent";
+    private static final String INT_NOT_NULL = " INTEGER NOT NULL DEFAULT 0, ";
 
     private SQLiteStatement sqlInsertMessage; // [1] fingerprint; [2] message
     private SQLiteStatement sqlInsertReceivedMessage; // [1] fingerprint; [2] message; [3] time
@@ -78,11 +79,11 @@ public class MessageStore extends SQLiteOpenHelper implements IMessageStore {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
                 COLUMN_FINGERPRINT + " BLOB PRIMARY KEY NOT NULL, " +
                 COLUMN_MESSAGE + " BLOB NOT NULL, " +
-                COLUMN_TIMES_SENT + " INTEGER NOT NULL DEFAULT 0, " +
-                COLUMN_TIMES_RECEIVED + " INTEGER NOT NULL DEFAULT 0, " +
-                COLUMN_FIRST_TIME_SENT + " INTEGER NOT NULL DEFAULT 0, " +
-                COLUMN_LAST_TIME_SENT + " INTEGER NOT NULL DEFAULT 0, " +
-                COLUMN_FIRST_TIME_RECEIVED + " INTEGER NOT NULL DEFAULT 0, " +
+                COLUMN_TIMES_SENT + INT_NOT_NULL +
+                COLUMN_TIMES_RECEIVED + INT_NOT_NULL +
+                COLUMN_FIRST_TIME_SENT + INT_NOT_NULL +
+                COLUMN_LAST_TIME_SENT + INT_NOT_NULL +
+                COLUMN_FIRST_TIME_RECEIVED + INT_NOT_NULL +
                 COLUMN_LAST_TIME_RECEIVED + " INTEGER NOT NULL DEFAULT 0);");
     }
 
@@ -148,7 +149,9 @@ public class MessageStore extends SQLiteOpenHelper implements IMessageStore {
         db.setTransactionSuccessful();
         db.endTransaction();
         sqlUpdateReceiveStats.clearBindings();
-        if (isNew) sqlInsertReceivedMessage.clearBindings();
+        if (isNew) {
+            sqlInsertReceivedMessage.clearBindings();
+        }
 
         return !isNew;
     }
