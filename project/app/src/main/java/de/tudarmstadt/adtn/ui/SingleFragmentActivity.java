@@ -12,8 +12,8 @@ import de.tudarmstadt.timberdoodle.R;
  */
 public class SingleFragmentActivity extends NavigationActivity {
 
-    private final static String EXTRA_FRAGMENT_CLASS = "fragment";
-    private final static String EXTRA_FRAGMENT_ARGS = "fragmentargs";
+    private static final String EXTRA_FRAGMENT_CLASS = "fragment";
+    private static final String EXTRA_FRAGMENT_ARGS = "fragmentargs";
 
     /**
      * Creates an intent for starting a SingleFragmentActivity or a derived activity.
@@ -30,7 +30,9 @@ public class SingleFragmentActivity extends NavigationActivity {
         Intent intent = new Intent(context, activityClass);
         intent.putExtra(EXTRA_FRAGMENT_CLASS, fragmentClass);
         intent.putExtra(EXTRA_FRAGMENT_ARGS, fragmentArgs);
-        if (start) context.startActivity(intent);
+        if (start) {
+            context.startActivity(intent);
+        }
         return intent;
     }
 
@@ -53,7 +55,9 @@ public class SingleFragmentActivity extends NavigationActivity {
 
         setContentView(R.layout.activity_single_fragment);
 
-        if (savedInstanceState != null) return;
+        if (savedInstanceState != null) {
+            return;
+        }
 
         // Instantiate the fragment class given in the intent
         Intent intent = getIntent();
