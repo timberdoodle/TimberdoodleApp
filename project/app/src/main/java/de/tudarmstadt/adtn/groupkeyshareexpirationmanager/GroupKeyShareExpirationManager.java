@@ -14,7 +14,7 @@ import java.util.Map;
 public class GroupKeyShareExpirationManager implements IGroupKeyShareExpirationManager {
 
     // The file the load from and store the group creation timestamps
-    private final static String FILENAME = "groupkeyshareexpiration.preferences";
+    private static final String FILENAME = "groupkeyshareexpiration.preferences";
 
     // The expiration interval after creation of a group key in milliseconds
     private final long expirationInterval;
@@ -41,7 +41,9 @@ public class GroupKeyShareExpirationManager implements IGroupKeyShareExpirationM
         for (Map.Entry<String, ?> prefEntry : allPrefs.entrySet()) {
             // Check if stored value is a Long (should always apply, but check anyway)
             Object value = prefEntry.getValue();
-            if (!(value instanceof Long)) continue;
+            if (!(value instanceof Long)) {
+                continue;
+            }
             // Add to entries
             addKeyTimestamp(Long.parseLong(prefEntry.getKey()), new Instant((long) value));
         }
