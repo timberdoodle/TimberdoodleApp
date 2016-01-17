@@ -5,7 +5,9 @@ package de.tudarmstadt.adtn;
  */
 public class NetworkingStatus {
 
-    public final static int STATUS_ENABLED = 0, STATUS_DISABLED = 1, STATUS_ERROR = 2;
+    public static final int STATUS_ENABLED = 0;
+    public static final int STATUS_DISABLED = 1;
+    public static final int STATUS_ERROR = 2;
 
     private final int status;
     private final String errorMessage;
