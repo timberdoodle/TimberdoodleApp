@@ -29,7 +29,7 @@ public class GroupKeyManagementFragment extends GroupManagerFragment {
     private abstract class GroupKeyManagement extends GroupAliasDialogData implements IKeyManagement {
     }
 
-    private final static String ARGNAME_PRESELECT = "preselect";
+    private static final String ARGNAME_PRESELECT = "preselect";
 
     /**
      * Creates a new GroupKeyManagementFragment.
