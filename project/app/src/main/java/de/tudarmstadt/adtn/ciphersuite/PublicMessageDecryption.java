@@ -49,7 +49,7 @@ public class PublicMessageDecryption {
      * @param offset     Start index of the mac in the cipher text.
      * @return returns true if the macs are equal, else false.
      */
-    private boolean macsEqual(byte[] mac, byte[] ciphertext, int offset) {
+    private static boolean macsEqual(byte[] mac, byte[] ciphertext, int offset) {
         boolean result = false;
         for (int i = 0; i < mac.length; ++i) {
             result = mac[i] == ciphertext[i + offset];
