@@ -35,10 +35,10 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
 
     private static final String TAG = "GroupKeyStore";
 
-    private final static String ID_ALIAS_SEPARATOR = "_";
+    private static final String ID_ALIAS_SEPARATOR = "_";
 
     // The next group key ID is stored as pseudo key that uses this constant for alias and algorithm
-    private final static String ENTRY_NEXT_GROUP_KEY_ID = "nextgroupkeyid";
+    private static final String ENTRY_NEXT_GROUP_KEY_ID = "nextgroupkeyid";
 
     // The password to use for encryption and decryption.
     private final KeyStore.PasswordProtection protection;
