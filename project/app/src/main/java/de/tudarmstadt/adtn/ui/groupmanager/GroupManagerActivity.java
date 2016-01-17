@@ -16,9 +16,9 @@ import de.tudarmstadt.timberdoodle.R;
 
 public class GroupManagerActivity extends NavigationActivity {
 
-    private final static String EXTRA_FRAGMENT_CLASS = "fragment";
+    private static final String EXTRA_FRAGMENT_CLASS = "fragment";
 
-    public final static List<MenuEntry> NAV_ENTRIES = Collections.unmodifiableList(Arrays.asList(
+    public static final List<MenuEntry> NAV_ENTRIES = Collections.unmodifiableList(Arrays.asList(
             MenuEntry.createHelpEntry(R.string.nav_group_management, R.string.help_3),
             new MenuEntry(R.string.nav_group_list, R.drawable.ic_vpn_key_black_24dp, createMenuHandler(GroupKeyManagementFragment.class)),
             new MenuEntry(R.string.nav_join_group, R.drawable.ic_group_add_black_24dp, createMenuHandler(ScanGroupKeyFragment.class)),
@@ -47,7 +47,9 @@ public class GroupManagerActivity extends NavigationActivity {
         super.init(savedInstanceState);
         setContentView(R.layout.activity_single_fragment);
         setMenuEntries(NAV_ENTRIES);
-        if (savedInstanceState == null) handleIntent();
+        if (savedInstanceState == null) {
+            handleIntent();
+        }
     }
 
     @Override
@@ -64,7 +66,9 @@ public class GroupManagerActivity extends NavigationActivity {
                 (Class<? extends GroupManagerFragment>) getIntent().getSerializableExtra(EXTRA_FRAGMENT_CLASS);
 
         // Go to specified fragment or to group management if not specified
-        if (fragmentClass == null) fragmentClass = GroupKeyManagementFragment.class;
+        if (fragmentClass == null) {
+            fragmentClass = GroupKeyManagementFragment.class;
+        }
         goToFragmentFromMenu(fragmentClass);
     }
 
@@ -78,7 +82,9 @@ public class GroupManagerActivity extends NavigationActivity {
         }
 
         // Do nothing if fragment to go to is the same as the current one
-        if (currentFragment.getClass().equals(fragmentClass)) return;
+        if (currentFragment.getClass().equals(fragmentClass)) {
+            return;
+        }
 
         // Instantiate new fragment and show it
         goToFragment(Fragment.instantiate(this, fragmentClass.getName()), currentFragment.getAddToBackStack());
@@ -87,7 +93,9 @@ public class GroupManagerActivity extends NavigationActivity {
     void goToFragment(Fragment newFragment, boolean addToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, newFragment);
-        if (addToBackStack) transaction.addToBackStack(null);
+        if (addToBackStack) {
+            transaction.addToBackStack(null);
+        }
         transaction.commit();
     }
 }
