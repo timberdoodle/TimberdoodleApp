@@ -53,7 +53,9 @@ public class PublicMessageDecryption {
         boolean result = false;
         for (int i = 0; i < mac.length; ++i) {
             result = mac[i] == ciphertext[i + offset];
-            if(!result) break;
+            if(!result) {
+                break;
+            }
         }
         return result;
     }
@@ -61,7 +63,7 @@ public class PublicMessageDecryption {
     /**
      * Reads the cipher iv from the whole iv.
      *
-     * @return
+     * @return byte array containing the initialization vector
      */
     private byte[] getCipherIV(byte[] ivbytes) {
         byte[] result = new byte[cipher.getNonceLength()];
@@ -77,7 +79,6 @@ public class PublicMessageDecryption {
      * @param keys       keys that will be tried for decryption
      * @return returns the decrypted byte array that is also cut down to
      * the actual payload
-     * @throws Exception
      */
     public byte[] decrypt(byte[] ciphertext, Collection<SecretKey> keys) {
         byte[] result = null;
