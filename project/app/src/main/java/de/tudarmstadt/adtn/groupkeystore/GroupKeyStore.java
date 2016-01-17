@@ -1,6 +1,7 @@
 package de.tudarmstadt.adtn.groupkeystore;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,6 +32,8 @@ import de.tudarmstadt.adtn.generickeystore.KeyStoreEntry;
  * A key store for group keys (symmetric keys).
  */
 public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<SecretKey> implements IGroupKeyStore {
+
+    private static final String TAG = "GroupKeyStore";
 
     private final static String ID_ALIAS_SEPARATOR = "_";
 
@@ -78,8 +81,9 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
         FileInputStream fileStream;
         try {
             fileStream = context.openFileInput(filename);
-        } catch (FileNotFoundException e) { // File does not exist? Then just use an empty key store
-            createEmptyStore();
+        } catch (FileNotFoundException e) {
+            Log.d(TAG, e.getMessage(), e);
+            createEmptyStore(); // If file does not exist just use an empty key store
             return;
         }
 
@@ -144,7 +148,7 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
             KeyStore keyStore;
             try {
                 keyStore = loadKeyStore(null);
-            } catch (UnrecoverableKeyException e) {
+            } catch (IOException e) {
                 ErrorLoggingSingleton log = ErrorLoggingSingleton.getInstance();
                 log.storeError(ErrorLoggingSingleton.getExceptionStackTraceAsFormattedString(e));
                 throw new RuntimeException(e); // Password cannot be wrong in newly created store
@@ -180,13 +184,9 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
     /* Loads and returns a key store using the specified input stream and the password stored in the
      * protection attribute. */
     private KeyStore loadKeyStore(InputStream stream)
-            throws CertificateException, KeyStoreException, NoSuchAlgorithmException, UnrecoverableKeyException {
+            throws CertificateException, KeyStoreException, NoSuchAlgorithmException, IOException {
         KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-        try {
-            keyStore.load(stream, protection.getPassword());
-        } catch (IOException e) {
-            throw new UnrecoverableKeyException();
-        }
+        keyStore.load(stream, protection.getPassword());
         return keyStore;
     }
 
