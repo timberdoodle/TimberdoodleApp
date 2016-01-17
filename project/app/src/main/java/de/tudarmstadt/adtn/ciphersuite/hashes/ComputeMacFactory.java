@@ -8,6 +8,9 @@ public class ComputeMacFactory {
 
     private static IComputeMAC mac;
 
+
+    private ComputeMacFactory() {}
+
     /**
      * Instantiates and returns an IComputeMAC instance
      *
