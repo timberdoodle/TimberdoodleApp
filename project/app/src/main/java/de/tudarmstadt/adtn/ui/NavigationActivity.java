@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,9 @@ import de.tudarmstadt.timberdoodle.R;
  * Inherit from this activity if it should have a navigation menu.
  */
 public abstract class NavigationActivity extends AppCompatActivity {
+
+    private static final String TAG = "NavigationActivity";
+
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -113,6 +117,7 @@ public abstract class NavigationActivity extends AppCompatActivity {
                                 //and start mailing app
                                 startActivity(Intent.createChooser(i, getResources().getString(R.string.send_mail)));
                             } catch (android.content.ActivityNotFoundException ex) {
+                                Log.w(TAG, ex.getMessage(), ex);
                                 Toast.makeText(NavigationActivity.this, getResources().getString(R.string.no_mail_clients), Toast.LENGTH_SHORT).show();
                             }
                             dialog.dismiss();
@@ -160,7 +165,7 @@ public abstract class NavigationActivity extends AppCompatActivity {
             try { // Workaround android bug
                 super.onBackPressed();
             } catch (Exception e) {
-
+                Log.w(TAG, e.getMessage(), e);
             }
         }
     }
