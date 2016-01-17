@@ -25,8 +25,8 @@ import de.tudarmstadt.timberdoodle.R;
  */
 public class AcceptGroupKeyFragment extends GroupManagerFragment {
 
-    private final static String ARGNAME_KEY = "key";
-    private final static String ARGNAME_TIMESTAMP = "timestamp";
+    private static final String ARGNAME_KEY = "key";
+    private static final String ARGNAME_TIMESTAMP = "timestamp";
 
     /**
      * Creates a new AcceptGroupKeyFragment.
