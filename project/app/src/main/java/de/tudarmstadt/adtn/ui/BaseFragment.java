@@ -14,9 +14,8 @@ import de.tudarmstadt.timberdoodle.R;
 public class BaseFragment extends Fragment {
 
     // The string table ID of the help string
-    private
     @StringRes
-    int helpStringResId;
+    private int helpStringResId;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -27,7 +26,9 @@ public class BaseFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() != R.id.menu_help) return super.onOptionsItemSelected(item);
+        if (item.getItemId() != R.id.menu_help) {
+            return super.onOptionsItemSelected(item);
+        }
 
         HelpDialog.show(getActivity(), helpStringResId);
         return true;
@@ -42,31 +43,4 @@ public class BaseFragment extends Fragment {
         helpStringResId = resId;
         setHasOptionsMenu(false);
     }
-
-    /**
-     * Transition between fragments.
-     *
-     * @param fragment The new fragment.
-     * @param replace  true to replace the current fragment with the new one or false to keep the
-     *                 old fragment and push the new one.
-     */
-    /*public void fragmentTransition(Fragment fragment, boolean replace) {
-        // Obtain ID of container view
-        View view = getView();
-        assert view != null;
-        @IdRes int containerViewId = ((ViewGroup) view.getParent()).getId();
-
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager.getBackStackEntryAt()
-
-        // Transition
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (replace) {
-            transaction.replace(containerViewId, fragment);
-        } else {
-            transaction.add(containerViewId, fragment);
-        }
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }*/
 }
