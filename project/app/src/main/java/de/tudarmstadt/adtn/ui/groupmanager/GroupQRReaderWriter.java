@@ -1,6 +1,7 @@
 package de.tudarmstadt.adtn.ui.groupmanager;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import org.joda.time.Instant;
 
@@ -10,6 +11,7 @@ import de.tudarmstadt.adtn.ciphersuite.IGroupCipher;
 
 public class GroupQRReaderWriter extends QRReaderWriter {
 
+    private static final String TAG = "GroupQRReaderWriter";
     /**
      * Contains the scanned group key data, i.e. the key itself and its timestamp.
      */
@@ -91,6 +93,7 @@ public class GroupQRReaderWriter extends QRReaderWriter {
 
             return new ScannedGroupKey(key, timestamp);
         } catch (Exception e) {
+            Log.w(TAG, e.getMessage(), e);
             return null; // Report invalid QR code format
         }
     }
