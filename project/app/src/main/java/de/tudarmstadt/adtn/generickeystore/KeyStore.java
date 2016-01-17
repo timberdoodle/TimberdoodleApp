@@ -43,7 +43,9 @@ public abstract class KeyStore<K extends Key> implements IKeyStore<K> {
         synchronized (entriesLock) {
             // Check if alias is already in use
             KeyStoreEntry<K> entry = getEntry(alias);
-            if (entry != null) return new KeyStoreEntry<>(entry.getId(), null, entry.getKey());
+            if (entry != null) {
+                return new KeyStoreEntry<>(entry.getId(), null, entry.getKey());
+            }
 
             // Check if key is already known
             entry = getEntry(key);
@@ -85,11 +87,15 @@ public abstract class KeyStore<K extends Key> implements IKeyStore<K> {
         synchronized (entriesLock) {
             // Cancel if new alias is already in use
             KeyStoreEntry<K> entry = getEntry(newAlias);
-            if (entry != null) return entry.getId();
+            if (entry != null) {
+                return entry.getId();
+            }
 
             // Cancel if ID is unknown
             entry = getEntry(id);
-            if (entry == null) return 0;
+            if (entry == null) {
+                return 0;
+            }
 
             // Replace the entry with a new one using the new alias
             entry = new KeyStoreEntry<>(id, newAlias, entry.getKey());
@@ -123,7 +129,9 @@ public abstract class KeyStore<K extends Key> implements IKeyStore<K> {
     // Get entry by alias
     private KeyStoreEntry<K> getEntry(String alias) {
         for (KeyStoreEntry<K> entry : unmodifiableEntries) {
-            if (entry.getAlias().equals(alias)) return entry;
+            if (entry.getAlias().equals(alias)) {
+                return entry;
+            }
         }
         return null;
     }
@@ -131,7 +139,9 @@ public abstract class KeyStore<K extends Key> implements IKeyStore<K> {
     // Get entry by key
     private KeyStoreEntry<K> getEntry(K key) {
         for (KeyStoreEntry<K> entry : unmodifiableEntries) {
-            if (entry.getKey().equals(key)) return entry;
+            if (entry.getKey().equals(key)) {
+                return entry;
+            }
         }
         return null;
     }
