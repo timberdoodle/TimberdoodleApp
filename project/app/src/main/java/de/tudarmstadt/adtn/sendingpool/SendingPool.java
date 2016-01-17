@@ -69,7 +69,9 @@ public class SendingPool implements ISendingPool {
                     try {
                         long millis = System.currentTimeMillis();
                         refill(); // Fetch messages from store
-                        if (!sendBatch()) break; // Send the messages
+                        if (!sendBatch()) {
+                            break; // Send the messages
+                        }
 
                         // Wait between sending of two batches
                         long wait = sendInterval * 1000 - (System.currentTimeMillis() - millis);
@@ -109,7 +111,9 @@ public class SendingPool implements ISendingPool {
                 currentThreadWasInterrupted = true;
             }
         }
-        if (currentThreadWasInterrupted) Thread.currentThread().interrupt();
+        if (currentThreadWasInterrupted) {
+            Thread.currentThread().interrupt();
+        }
 
         // Do not leak the preferences listener object
         preferences.removeOnCommitListener(preferencesListener);
@@ -118,12 +122,16 @@ public class SendingPool implements ISendingPool {
     // Wraps messages from the message store in packets and adds them to the sending pool
     private void refill() {
         // No need to refill?
-        if (entries.size() >= refillThreshold) return;
+        if (entries.size() >= refillThreshold) {
+            return;
+        }
 
         // Calculate how many messages are needed to reach threshold
         Collection<SecretKey> keys = groupKeyStore.getSecretKeys();
         int numKeys = keys.size();
-        if (numKeys == 0) return; // Cannot create any packets without keys
+        if (numKeys == 0) {
+            return; // Cannot create any packets without keys
+        }
         int numMessages = (refillThreshold - entries.size() + numKeys - 1) / numKeys;
 
         // Wrap messages in packets so they are ready to send and store them in pool
@@ -163,7 +171,9 @@ public class SendingPool implements ISendingPool {
 
 
             // Update statistics for message if this is not a dummy packet
-            if (entry.getMessageID() != null) messageStore.sentMessage(entry.getMessageID());
+            if (entry.getMessageID() != null) {
+                messageStore.sentMessage(entry.getMessageID());
+            }
         }
 
         return true;
