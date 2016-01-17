@@ -229,25 +229,18 @@ public class Service extends android.app.Service implements IService {
         byte[] receiveBuffer = new byte[packetBuilder.getEncryptedPacketSize()];
 
         while (true) {
-            // Received encrypted packet
+            // TODO: Received encrypted packet
 
-
-            // Try to decrypt. Skip if not possible.
+            // Try to decrypt
             byte[] unpacked = packetBuilder.tryUnpackPacket(receiveBuffer, groupKeyStore.getKeys());
-            if (unpacked == null) {
-                continue;
+            // If decryption successful and message not yet in store
+            if (unpacked != null && !(messageStore.receivedMessage(unpacked))) {
+                // Notify of message arrival via broadcast intent
+                Intent intent = new Intent(ACTION_HANDLE_RECEIVED_MESSAGE);
+                intent.putExtra(INTENT_ARG_HEADER, unpacked[0]);
+                intent.putExtra(INTENT_ARG_CONTENT, Arrays.copyOfRange(unpacked, 1, unpacked.length));
+                broadcastManager.sendBroadcast(intent);
             }
-
-            // Ignore if already received
-            if (messageStore.receivedMessage(unpacked)) {
-                continue;
-            }
-
-            // Notify of message arrival via broadcast intent
-            Intent intent = new Intent(ACTION_HANDLE_RECEIVED_MESSAGE);
-            intent.putExtra(INTENT_ARG_HEADER, unpacked[0]);
-            intent.putExtra(INTENT_ARG_CONTENT, Arrays.copyOfRange(unpacked, 1, unpacked.length));
-            broadcastManager.sendBroadcast(intent);
         }
     }
 
