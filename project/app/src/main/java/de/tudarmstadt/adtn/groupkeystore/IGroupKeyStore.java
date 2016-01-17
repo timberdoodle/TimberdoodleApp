@@ -22,5 +22,5 @@ public interface IGroupKeyStore extends IKeyStore<SecretKey> {
     /**
      * @return An unmodifiable snapshot of the keys currently in the store.
      */
-    Collection<SecretKey> getKeys();
+    Collection<SecretKey> getSecretKeys();
 }

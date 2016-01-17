@@ -232,7 +232,7 @@ public class Service extends android.app.Service implements IService {
             // TODO: Received encrypted packet
 
             // Try to decrypt
-            byte[] unpacked = packetBuilder.tryUnpackPacket(receiveBuffer, groupKeyStore.getKeys());
+            byte[] unpacked = packetBuilder.tryUnpackPacket(receiveBuffer, groupKeyStore.getSecretKeys());
             // If decryption successful and message not yet in store
             if (unpacked != null && !(messageStore.receivedMessage(unpacked))) {
                 // Notify of message arrival via broadcast intent

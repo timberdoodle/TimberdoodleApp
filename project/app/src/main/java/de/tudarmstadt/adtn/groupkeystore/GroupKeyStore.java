@@ -29,7 +29,7 @@ import de.tudarmstadt.adtn.errorlogger.ErrorLoggingSingleton;
 import de.tudarmstadt.adtn.generickeystore.KeyStoreEntry;
 
 /**
- * A key store for group keys (symmetric keys).
+ * A key store for group secretKeys (symmetric secretKeys).
  */
 public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<SecretKey> implements IGroupKeyStore {
 
@@ -48,8 +48,8 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
 
     private final String filename;
 
-    // A collection that contains only the keys.
-    private volatile Collection<SecretKey> keys;
+    // A collection that contains only the secretKeys.
+    private volatile Collection<SecretKey> secretKeys;
 
     private long nextGroupKeyId = 1;
     private final IGroupCipher cipher;
@@ -210,7 +210,7 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
     protected void onChanged() {
         super.onChanged();
 
-        // Iterate through all entries and copy only the keys
+        // Iterate through all entries and copy only the secretKeys
         Collection<KeyStoreEntry<SecretKey>> entries = getEntries();
         SecretKey[] keys = new SecretKey[entries.size()];
         int i = 0;
@@ -218,17 +218,17 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
             keys[i++] = cipher.byteArrayToSecretKey(entry.getKey().getEncoded());
         }
 
-        this.keys = Collections.unmodifiableList(Arrays.asList(keys));
+        this.secretKeys = Collections.unmodifiableList(Arrays.asList(keys));
 
         // Key store won't change often, so just save on every change
         save();
     }
 
     /**
-     * @return An unmodifiable snapshot of the keys currently in the store.
+     * @return An unmodifiable snapshot of the secretKeys currently in the store.
      */
     @Override
-    public Collection<SecretKey> getKeys() {
-        return keys;
+    public Collection<SecretKey> getSecretKeys() {
+        return secretKeys;
     }
 }

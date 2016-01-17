@@ -25,7 +25,7 @@ public class GroupKeyStoreMock implements IGroupKeyStore{
      * @return An unmodifiable snapshot of the keys currently in the store.
      */
     @Override
-    public Collection<SecretKey> getKeys() {
+    public Collection<SecretKey> getSecretKeys() {
         return groupKeyList;
     }
 

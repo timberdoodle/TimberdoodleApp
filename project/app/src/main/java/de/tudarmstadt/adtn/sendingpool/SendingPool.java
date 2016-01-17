@@ -121,7 +121,7 @@ public class SendingPool implements ISendingPool {
         if (entries.size() >= refillThreshold) return;
 
         // Calculate how many messages are needed to reach threshold
-        Collection<SecretKey> keys = groupKeyStore.getKeys();
+        Collection<SecretKey> keys = groupKeyStore.getSecretKeys();
         int numKeys = keys.size();
         if (numKeys == 0) return; // Cannot create any packets without keys
         int numMessages = (refillThreshold - entries.size() + numKeys - 1) / numKeys;
