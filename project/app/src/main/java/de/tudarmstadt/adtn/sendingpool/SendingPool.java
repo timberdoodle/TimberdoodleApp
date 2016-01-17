@@ -8,7 +8,6 @@ import java.util.Random;
 
 import javax.crypto.SecretKey;
 
-import de.tudarmstadt.adtn.ISocket;
 import de.tudarmstadt.adtn.groupkeystore.IGroupKeyStore;
 import de.tudarmstadt.adtn.messagestore.IMessageStore;
 import de.tudarmstadt.adtn.messagestore.Message;
