@@ -88,8 +88,16 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
             createEmptyStore(); // If file does not exist just use an empty key store
             return;
         }
-
         // Load key store and copy its entries
+        createInitializedStore(fileStream);
+    }
+
+    // Creates an empty group key store
+    private void createEmptyStore() {
+        setEntries(Collections.<KeyStoreEntry<SecretKey>>emptyList());
+    }
+
+    private void createInitializedStore(FileInputStream fileStream) throws UnrecoverableKeyException{
         ArrayList<KeyStoreEntry<SecretKey>> entries;
         try {
             KeyStore keyStore = loadKeyStore(fileStream);
@@ -114,13 +122,7 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
             log.storeError(ErrorLoggingSingleton.getExceptionStackTraceAsFormattedString(e));
             throw new RuntimeException(e);
         }
-
         setEntries(entries);
-    }
-
-    // Creates an empty group key store
-    private void createEmptyStore() {
-        setEntries(Collections.<KeyStoreEntry<SecretKey>>emptyList());
     }
 
     /* Loads and returns the entry that uses the specified alias from the specified key store using
