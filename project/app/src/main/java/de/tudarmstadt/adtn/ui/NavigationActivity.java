@@ -68,7 +68,9 @@ public abstract class NavigationActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Do nothing if this is only a separator
                 MenuEntry entry = menuAdapter.getEntry(position);
-                if (entry == null) return;
+                if (entry == null) {
+                    return;
+                }
                 // Call click handler and close menu if requested
                 if (entry.getListener().onClick(view.getContext())) {
                     drawerList.setItemChecked(position, true);
@@ -84,14 +86,11 @@ public abstract class NavigationActivity extends AppCompatActivity {
 
         // Set NavigationDrawer for ActionBar
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
-
-
             @Override
             public void onDrawerClosed(View view) {
                 getSupportActionBar().setTitle(R.string.app_name);
                 supportInvalidateOptionsMenu();
             }
-
             @Override
             public void onDrawerOpened(View drawerView) {
                 menuAdapter.setShowHelpButtons(preferences.getShowHelpButtons());
@@ -101,9 +100,12 @@ public abstract class NavigationActivity extends AppCompatActivity {
         };
         drawerLayout.setDrawerListener(drawerToggle);
 
+        sendErrorMessage();
+    }
+
+    private void sendErrorMessage() {
         final ErrorLoggingSingleton log = ErrorLoggingSingleton.getInstance();
         log.setContext(getApplicationContext());
-        //Send error message
         if (log.hasError()) {
             new AlertDialog.Builder(this).setMessage(R.string.report_to_devs).
                     setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -131,6 +133,7 @@ public abstract class NavigationActivity extends AppCompatActivity {
             }).show();
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
