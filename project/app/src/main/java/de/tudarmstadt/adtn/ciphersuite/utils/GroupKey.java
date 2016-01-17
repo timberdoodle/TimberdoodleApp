@@ -30,7 +30,8 @@ public class GroupKey implements SecretKey, IGroupKey {
     @Override
     public byte[] getEncoded() {
         // Concatenate ChaCha and Poly key
-        byte[] encodedChaChaKey = cipherKey.getEncoded(), encodedPolyKey = macKey.getEncoded();
+        byte[] encodedChaChaKey = cipherKey.getEncoded();
+        byte[] encodedPolyKey = macKey.getEncoded();
         byte[] result = new byte[encodedChaChaKey.length + encodedPolyKey.length];
         System.arraycopy(encodedChaChaKey, 0, result, 0, encodedChaChaKey.length);
         System.arraycopy(encodedPolyKey, 0, result, encodedChaChaKey.length, encodedPolyKey.length);
