@@ -89,7 +89,7 @@ public class QRReaderWriter {
     /* Calculates the number of characters in a base64 encoded string without padding and line
      * breaks if it encodes the specified number of bytes. */
     protected int getBase64StringLength(int numBytes) {
-        final int BASE64_BITS_PER_CHAR = 6;
-        return (numBytes * 8 + BASE64_BITS_PER_CHAR - 1) / BASE64_BITS_PER_CHAR;
+        final int base64BitsPerChar = 6;
+        return (numBytes * 8 + base64BitsPerChar - 1) / base64BitsPerChar;
     }
 }
