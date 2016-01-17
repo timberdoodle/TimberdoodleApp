@@ -3,6 +3,7 @@ package de.tudarmstadt.adtn.groupkeystore;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -146,29 +147,42 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
      */
     @Override
     public synchronized void save() {
+        FileOutputStream fileStream;
+        KeyStore keyStore;
+
         try {
             // Create empty key store file
-            FileOutputStream fileStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
-            KeyStore keyStore;
-            try {
-                keyStore = loadKeyStore(null);
-            } catch (IOException e) {
-                ErrorLoggingSingleton log = ErrorLoggingSingleton.getInstance();
-                log.storeError(ErrorLoggingSingleton.getExceptionStackTraceAsFormattedString(e));
-                throw new RuntimeException(e); // Password cannot be wrong in newly created store
-            }
+            fileStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
+        } catch (FileNotFoundException e) {
+            ErrorLoggingSingleton log = ErrorLoggingSingleton.getInstance();
+            log.storeError(ErrorLoggingSingleton.getExceptionStackTraceAsFormattedString(e));
+            throw new RuntimeException(e);
+        }
 
+        try {
+            keyStore = loadKeyStore(null);
+        } catch (CertificateException | IOException | KeyStoreException | NoSuchAlgorithmException e) {
+            ErrorLoggingSingleton log = ErrorLoggingSingleton.getInstance();
+            log.storeError(ErrorLoggingSingleton.getExceptionStackTraceAsFormattedString(e));
+            throw new RuntimeException(e); // Password cannot be wrong in newly created store
+        }
+
+        try {
             // Store entries in key store file
             for (KeyStoreEntry<SecretKey> entry : getEntries()) {
                 // Create key store alias by concatenating ID and group alias and put in key store file
                 storeEntry(keyStore, entry.getId() + ID_ALIAS_SEPARATOR + entry.getAlias(), entry.getKey());
             }
-
             // Store next group key ID in pseudo key entry
             byte[] nextGroupKeyIdBytes = ByteBuffer.allocate(8).putLong(nextGroupKeyId).array();
             storeEntry(keyStore, ENTRY_NEXT_GROUP_KEY_ID, new SecretKeySpec(nextGroupKeyIdBytes, ENTRY_NEXT_GROUP_KEY_ID));
-
-            // Save and close key store file
+        } catch (KeyStoreException e) {
+            ErrorLoggingSingleton log = ErrorLoggingSingleton.getInstance();
+            log.storeError(ErrorLoggingSingleton.getExceptionStackTraceAsFormattedString(e));
+            throw new RuntimeException(e);
+        }
+        // Save and close key store file
+        try {
             keyStore.store(fileStream, protection.getPassword());
             fileStream.close();
         } catch (CertificateException | IOException | KeyStoreException | NoSuchAlgorithmException e) {
