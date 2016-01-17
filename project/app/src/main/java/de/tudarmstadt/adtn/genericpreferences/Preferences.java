@@ -8,27 +8,27 @@ import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Loads and stores preferences and notifies observers if preferences were modified.
+ * Loads and stores sharedPreferences and notifies observers if sharedPreferences were modified.
  */
 public abstract class Preferences implements IPreferences {
 
-    // The SharedPreferences object that holds all the preferences
-    private final SharedPreferences preferences;
-    // Makes sure only one thread at a time is editing the preferences
+    // The SharedPreferences object that holds all the sharedPreferences
+    private final SharedPreferences sharedPreferences;
+    // Makes sure only one thread at a time is editing the sharedPreferences
     private final ReentrantLock editorLock = new ReentrantLock();
     // The listener which get notified when an edit transaction is done
     private final ArrayList<OnCommitListener> listeners = new ArrayList<>();
-    // Will be used to edit the preferences
+    // Will be used to edit the sharedPreferences
     private volatile SharedPreferences.Editor editor;
 
     /**
      * Creates a new Preferences object.
      *
      * @param context  The context to use.
-     * @param filename The filename where the preferences are stored.
+     * @param filename The filename where the sharedPreferences are stored.
      */
     public Preferences(Context context, String filename) {
-        preferences = context.getSharedPreferences(filename, Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences(filename, Context.MODE_PRIVATE);
     }
 
     /**
@@ -48,7 +48,7 @@ public abstract class Preferences implements IPreferences {
     @Override
     public void edit() {
         editorLock.lock();
-        editor = preferences.edit();
+        editor = sharedPreferences.edit();
     }
 
     /**
@@ -56,7 +56,7 @@ public abstract class Preferences implements IPreferences {
      */
     @Override
     public void commit() {
-        // Apply new preferences
+        // Apply new sharedPreferences
         editor.apply();
         editor = null;
         editorLock.unlock();
@@ -68,14 +68,14 @@ public abstract class Preferences implements IPreferences {
     }
 
     /**
-     * @return The SharedPreferences object containing the preferences managed by this object.
+     * @return The SharedPreferences object containing the sharedPreferences managed by this object.
      */
     protected SharedPreferences getPrefs() {
-        return preferences;
+        return sharedPreferences;
     }
 
     /**
-     * @return A {@link android.content.SharedPreferences.Editor} object to edit preferences if an
+     * @return A {@link android.content.SharedPreferences.Editor} object to edit sharedPreferences if an
      * edit transaction has been started.
      */
     protected SharedPreferences.Editor getEditor() {
