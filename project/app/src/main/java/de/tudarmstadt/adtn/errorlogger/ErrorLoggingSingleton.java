@@ -9,7 +9,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -21,11 +20,11 @@ public class ErrorLoggingSingleton {
 
     private static final String TAG = "ErrorLoggingSingleton";
     //file name
-    private final String filename = "ErrorLog.txt";
+    private static final String FILENAME = "ErrorLog.txt";
     //developer mail adress or the adress of someone responsible
-    private final String devMail = "dev_timberoodle@you-spam.com";
+    private static final String DEV_MAIL = "dev_timberoodle@you-spam.com";
     //mail subject
-    private final String subject = "Error log of timberdoodle";
+    private static final String SUBJECT = "Error log of timberdoodle";
     //context that is used.
     private volatile Context context = null;
     private static volatile ErrorLoggingSingleton instance = null;
@@ -61,7 +60,9 @@ public class ErrorLoggingSingleton {
         sb.append(e.getClass().getSimpleName()).append(ls);
         StackTraceElement[] st = e.getStackTrace();
         for (StackTraceElement trace : st) {
-            for (int j = 0; j < i; ++j) sb.append("\t");
+            for (int j = 0; j < i; ++j) {
+                sb.append("\t");
+            }
             sb.append(trace.toString()).append(ls);
             ++i;
         }
@@ -89,7 +90,7 @@ public class ErrorLoggingSingleton {
      * @return returns true if there is an entry in the log, else false.
      */
     public boolean hasError() {
-        File errorLog = context.getFileStreamPath(filename);
+        File errorLog = context.getFileStreamPath(FILENAME);
         return errorLog.exists();
     }
 
@@ -100,7 +101,7 @@ public class ErrorLoggingSingleton {
      * (i.e. if false is returned, an error/exception occured.
      */
     public boolean clearLog() {
-        File errorLog = context.getFileStreamPath(filename);
+        File errorLog = context.getFileStreamPath(FILENAME);
         return errorLog.delete();
     }
 
@@ -113,7 +114,7 @@ public class ErrorLoggingSingleton {
         try {
             if (context != null) {
                 //Open FileOutputStream to write
-                FileOutputStream out = context.openFileOutput(filename, Context.MODE_APPEND);
+                FileOutputStream out = context.openFileOutput(FILENAME, Context.MODE_APPEND);
                 BufferedOutputStream writer = new BufferedOutputStream(out);
                 //write
                 writer.write(errorlog.getBytes());
@@ -138,7 +139,7 @@ public class ErrorLoggingSingleton {
         byte[] buffer = new byte[bufferSize];
         StringBuilder sb = new StringBuilder();
         //Open FileInputStream and create a BufferedInputStream with it (for performance)
-        FileInputStream in = context.openFileInput(filename);
+        FileInputStream in = context.openFileInput(FILENAME);
         BufferedInputStream reader = new BufferedInputStream(in);
         //Read the text file.
         while (reader.read(buffer) != -1) {
@@ -192,9 +193,9 @@ public class ErrorLoggingSingleton {
         //Set type
         result.setType("text/plain");
         //Set adress
-        result.putExtra(Intent.EXTRA_EMAIL, new String[]{devMail});
+        result.putExtra(Intent.EXTRA_EMAIL, new String[]{DEV_MAIL});
         //Set subject
-        result.putExtra(Intent.EXTRA_SUBJECT, subject);
+        result.putExtra(Intent.EXTRA_SUBJECT, SUBJECT);
         //create and set mail body
         result.putExtra(Intent.EXTRA_TEXT, createBody());
         //return Intent for further use
