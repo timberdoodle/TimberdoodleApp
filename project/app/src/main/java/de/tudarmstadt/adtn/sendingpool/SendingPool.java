@@ -34,7 +34,6 @@ public class SendingPool implements ISendingPool {
             loadPreferences();
         }
     };
-    private ISocket socket;
     private IMessageStore messageStore;
     private IPacketBuilder packetBuilder;
     private IGroupKeyStore groupKeyStore;
@@ -43,16 +42,14 @@ public class SendingPool implements ISendingPool {
      * Creates the sending pool object.
      *
      * @param preferences   A preferences object to configure the sending pool.
-     * @param socket        The socket to use for sending the packets.
      * @param messageStore  The message store to fetch the messages from.
      * @param packetBuilder The packet builder to create packets for a message.
      * @param groupKeyStore The key store containing the keys to encrypt the packets.
      */
-    public SendingPool(IPreferences preferences, ISocket socket, IMessageStore messageStore,
+    public SendingPool(IPreferences preferences, IMessageStore messageStore,
                        IPacketBuilder packetBuilder, IGroupKeyStore groupKeyStore) {
         // Store references
         this.preferences = preferences;
-        this.socket = socket;
         this.messageStore = messageStore;
         this.packetBuilder = packetBuilder;
         this.groupKeyStore = groupKeyStore;
@@ -72,8 +69,6 @@ public class SendingPool implements ISendingPool {
                         if (!sendBatch()) {
                             break; // Send the messages
                         }
-
-                        // Wait between sending of two batches
                         long wait = sendInterval * 1000 - (System.currentTimeMillis() - millis);
                         if (wait > 0) {
                             Thread.sleep(wait);
