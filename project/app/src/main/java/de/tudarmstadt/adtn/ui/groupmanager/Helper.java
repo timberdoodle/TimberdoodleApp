@@ -63,10 +63,7 @@ public final class Helper {
      * Shows a dialog for (re)naming a key.
      *
      * @param context             The context to use.
-     * @param minAliasLength      The minimum size of the alias.
-     * @param maxAliasLength      The maximum size of the alias.
-     * @param aliasTooShortString The ID of the string to show if the alias is too short.
-     * @param titleString         The ID of the title string of dialog.
+     * @param dialogData          Text to show in the dialog.
      * @param listener            The listener to notify the caller that the length of the alias is
      *                            within range and the user pressed ok.
      */
@@ -93,15 +90,14 @@ public final class Helper {
                     @Override
                     public void onClick(View v) {
                         String alias = input.getText().toString();
-
-                        // Check if alias meets minimum length
                         if (alias.length() < dialogData.getMinAliasLength()) {
                             showToast(context, dialogData.getStringAliasTooShort());
                             return;
                         }
-
                         // Notify listener and close dialog if requested by return value
-                        if (listener.onConfirmAlias(alias)) alert.dismiss();
+                        if (listener.onConfirmAlias(alias)) {
+                            alert.dismiss();
+                        }
                     }
                 });
             }
