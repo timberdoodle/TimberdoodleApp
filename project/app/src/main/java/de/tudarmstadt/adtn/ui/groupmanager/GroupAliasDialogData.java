@@ -30,9 +30,8 @@ public class GroupAliasDialogData implements IAliasDialogData {
      * @return The ID of the string to show if the new alias is too short.
      */
     @Override
-    public
     @StringRes
-    int getStringAliasTooShort() {
+    public int getStringAliasTooShort() {
         return R.string.groupLengthWarning;
     }
 
@@ -40,9 +39,8 @@ public class GroupAliasDialogData implements IAliasDialogData {
      * @return The ID of the rename dialog title string.
      */
     @Override
-    public
     @StringRes
-    int getStringRenameDialogTitle() {
+    public int getStringRenameDialogTitle() {
         return R.string.input_groupname;
     }
 }
