@@ -65,7 +65,9 @@ public class GroupKeyStore extends de.tudarmstadt.adtn.generickeystore.KeyStore<
      * @throws UnrecoverableKeyException If the specified password is wrong.
      */
     public GroupKeyStore(Context context, IGroupCipher groupCipher, String filename, String password, boolean createEmpty) throws UnrecoverableKeyException {
-        if (password.isEmpty()) throw new IllegalArgumentException("password cannot be empty");
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException("password cannot be empty");
+        }
 
         this.context = context;
         this.cipher = groupCipher;
