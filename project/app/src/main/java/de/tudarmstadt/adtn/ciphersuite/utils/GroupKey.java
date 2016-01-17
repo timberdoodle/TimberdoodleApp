@@ -39,8 +39,9 @@ public class GroupKey implements SecretKey, IGroupKey {
     /**
      * Getter for the cipher key
      *
-     * @return
+     * @return SecretKey
      */
+    @Override
     public SecretKey getCipherKey() {
         return cipherKey;
     }
@@ -48,8 +49,9 @@ public class GroupKey implements SecretKey, IGroupKey {
     /**
      * Getter for the mac key
      *
-     * @return
+     * @return SecretKey
      */
+    @Override
     public SecretKey getMACKey() {
         return macKey;
     }
