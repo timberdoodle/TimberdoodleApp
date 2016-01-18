@@ -4,15 +4,11 @@ import android.content.Context;
 
 public class Preferences extends de.tudarmstadt.adtn.genericpreferences.Preferences implements IPreferences {
 
-    private final static String PREFKEY_SENDING_POOL_SEND_INTERVAL = "SendingPoolSendInterval";
-
-    // Sending pool send interval
-    private final static String PREFKEY_SENDING_POOL_REFILL_THRESHOLD = "SendingPoolRefillThreshold";
-    private final static String PREFKEY_SENDING_POOL_BATCH_SIZE = "SendingPoolBatchSize";
-    private final static String PREFKEY_AUTO_JOIN_AD_HOC_NETWORK = "AutoJoinAdHocNetwork";
-
-    // Sending pool refill threshold
-    private final static String PREFKEY_SHOW_HELP_BUTTONS = "ShowHelpButtons";
+    private static final String PREFKEY_SENDING_POOL_SEND_INTERVAL = "SendingPoolSendInterval";
+    private static final String PREFKEY_SENDING_POOL_REFILL_THRESHOLD = "SendingPoolRefillThreshold";
+    private static final String PREFKEY_SENDING_POOL_BATCH_SIZE = "SendingPoolBatchSize";
+    private static final String PREFKEY_AUTO_JOIN_AD_HOC_NETWORK = "AutoJoinAdHocNetwork";
+    private static final String PREFKEY_SHOW_HELP_BUTTONS = "ShowHelpButtons";
 
     public Preferences(Context context) {
         super(context, "adtn.preferences");
@@ -38,7 +34,7 @@ public class Preferences extends de.tudarmstadt.adtn.genericpreferences.Preferen
     public void setSendingPoolRefillThreshold(int refillThreshold) {
         getEditor().putInt(PREFKEY_SENDING_POOL_REFILL_THRESHOLD, refillThreshold);
     }
-    
+
     @Override
     public int getSendingPoolBatchSize() {
         return getPrefs().getInt(PREFKEY_SENDING_POOL_BATCH_SIZE, DEFAULT_SENDING_POOL_BATCH_SIZE);
