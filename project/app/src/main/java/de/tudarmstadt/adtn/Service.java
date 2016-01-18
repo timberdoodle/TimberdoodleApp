@@ -19,8 +19,8 @@ import de.tudarmstadt.adtn.messagestore.IMessageStore;
 import de.tudarmstadt.adtn.messagestore.MessageStore;
 import de.tudarmstadt.adtn.packetbuilding.IPacketBuilder;
 import de.tudarmstadt.adtn.packetbuilding.PacketBuilder;
-import de.tudarmstadt.adtn.preferences.IPreferences;
-import de.tudarmstadt.adtn.preferences.Preferences;
+import de.tudarmstadt.adtn.preferences.IAdtnPreferences;
+import de.tudarmstadt.adtn.preferences.AdtnPreferences;
 import de.tudarmstadt.adtn.sendingpool.ISendingPool;
 import de.tudarmstadt.adtn.ui.NetworkingStatusNotification;
 import de.tudarmstadt.timberdoodle.R;
@@ -37,7 +37,7 @@ public class Service extends android.app.Service implements IService {
     private final Object groupKeyStoreLock = new Object();
     private final Object networkingStartStopLock = new Object();
 
-    private IPreferences preferences;
+    private IAdtnPreferences preferences;
     private IMessageStore messageStore;
     private IPacketBuilder packetBuilder;
     private ISendingPool sendingPool;
@@ -66,7 +66,7 @@ public class Service extends android.app.Service implements IService {
         statusNotification = new NetworkingStatusNotification(this);
         setNetworkingStatus(false, null);
 
-        preferences = new Preferences(this);
+        preferences = new AdtnPreferences(this);
 
         // Initialize group cipher, packet builder and broadcast manager
         packetBuilder = new PacketBuilder(ProtocolConstants.MAX_MESSAGE_SIZE);
@@ -264,7 +264,7 @@ public class Service extends android.app.Service implements IService {
      * @return The service preferences.
      */
     @Override
-    public IPreferences getPreferences() {
+    public IAdtnPreferences getPreferences() {
         return preferences;
     }
 

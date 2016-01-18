@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.tudarmstadt.adtn.errorlogger.ErrorLoggingSingleton;
-import de.tudarmstadt.adtn.preferences.Preferences;
+import de.tudarmstadt.adtn.preferences.AdtnPreferences;
 import de.tudarmstadt.timberdoodle.R;
 
 /**
@@ -35,7 +35,7 @@ public abstract class NavigationActivity extends AppCompatActivity {
     private ListView drawerList;
     private ActionBarDrawerToggle drawerToggle;
     private MenuAdapter menuAdapter;
-    private Preferences preferences;
+    private AdtnPreferences adtnPreferences;
     private boolean wasPaused = false;
     /**
      * Will be called on creation of activity. Override this instead of onCreate.
@@ -43,12 +43,12 @@ public abstract class NavigationActivity extends AppCompatActivity {
      * @param savedInstanceState Same as in onCreate.
      */
     protected void init(Bundle savedInstanceState) {
-        preferences = new Preferences(this);
+        adtnPreferences = new AdtnPreferences(this);
     }
 
     public void setMenuEntries(List<MenuEntry> entries) {
         menuAdapter = new MenuAdapter(this, entries);
-        menuAdapter.setShowHelpButtons(preferences.getShowHelpButtons());
+        menuAdapter.setShowHelpButtons(adtnPreferences.getShowHelpButtons());
     }
 
     @Override
@@ -93,7 +93,7 @@ public abstract class NavigationActivity extends AppCompatActivity {
             }
             @Override
             public void onDrawerOpened(View drawerView) {
-                menuAdapter.setShowHelpButtons(preferences.getShowHelpButtons());
+                menuAdapter.setShowHelpButtons(adtnPreferences.getShowHelpButtons());
                 getSupportActionBar().setTitle(R.string.app_name);
                 supportInvalidateOptionsMenu();
             }
@@ -177,7 +177,7 @@ public abstract class NavigationActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (wasPaused) {
-            menuAdapter.setShowHelpButtons(preferences.getShowHelpButtons());
+            menuAdapter.setShowHelpButtons(adtnPreferences.getShowHelpButtons());
             wasPaused = false;
         }
     }

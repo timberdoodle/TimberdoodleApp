@@ -6,8 +6,8 @@ import android.test.RenamingDelegatingContext;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import de.tudarmstadt.adtn.errorlogger.ErrorLoggingSingleton;
-import de.tudarmstadt.adtn.preferences.IPreferences;
-import de.tudarmstadt.adtn.preferences.Preferences;
+import de.tudarmstadt.adtn.preferences.AdtnPreferences;
+import de.tudarmstadt.adtn.preferences.IAdtnPreferences;
 
 public class PreferencesTests extends AndroidTestCase {
 
@@ -22,17 +22,17 @@ public class PreferencesTests extends AndroidTestCase {
         log.setContext(context);
     }
 
-    private IPreferences loadPreferences() {
-        return new Preferences(context);
+    private IAdtnPreferences loadPreferences() {
+        return new AdtnPreferences(context);
     }
 
-    private void compareAllPreferences(IPreferences uut, int sendInterval, int refillThreshold, int batchSize) {
+    private void compareAllPreferences(IAdtnPreferences uut, int sendInterval, int refillThreshold, int batchSize) {
         assertEquals(sendInterval, uut.getSendingPoolSendInterval());
         assertEquals(refillThreshold, uut.getSendingPoolRefillThreshold());
         assertEquals(batchSize, uut.getSendingPoolBatchSize());
     }
 
-    private void setAllPreferences(IPreferences uut, int sendInterval, int refillThreshold, int batchSize) {
+    private void setAllPreferences(IAdtnPreferences uut, int sendInterval, int refillThreshold, int batchSize) {
         uut.edit();
         uut.setSendingPoolSendInterval(sendInterval);
         uut.setSendingPoolRefillThreshold(refillThreshold);
@@ -48,7 +48,7 @@ public class PreferencesTests extends AndroidTestCase {
                 batchSize1 = 8722, batchSize2 = 208;
 
         // Load preferences, set all preferences, verify, reload and verify again
-        IPreferences uut = loadPreferences();
+        IAdtnPreferences uut = loadPreferences();
         setAllPreferences(uut, sendInterval1, refillThreshold1, batchSize1);
         compareAllPreferences(uut, sendInterval1, refillThreshold1, batchSize1);
         uut = loadPreferences();

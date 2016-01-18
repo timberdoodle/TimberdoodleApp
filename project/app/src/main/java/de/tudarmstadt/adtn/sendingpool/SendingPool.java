@@ -12,7 +12,7 @@ import de.tudarmstadt.adtn.groupkeystore.IGroupKeyStore;
 import de.tudarmstadt.adtn.messagestore.IMessageStore;
 import de.tudarmstadt.adtn.messagestore.Message;
 import de.tudarmstadt.adtn.packetbuilding.IPacketBuilder;
-import de.tudarmstadt.adtn.preferences.IPreferences;
+import de.tudarmstadt.adtn.preferences.IAdtnPreferences;
 
 /**
  * Wraps messages from the message store in packets and stores them.
@@ -26,8 +26,8 @@ public class SendingPool implements ISendingPool {
     private LinkedList<SendingPoolEntry> entries = new LinkedList<>();
     private Thread thread;
     private Random random = new Random();
-    private IPreferences preferences;
-    private IPreferences.OnCommitListener preferencesListener = new de.tudarmstadt.adtn.genericpreferences.Preferences.OnCommitListener() {
+    private IAdtnPreferences preferences;
+    private IAdtnPreferences.OnCommitListener preferencesListener = new de.tudarmstadt.adtn.genericpreferences.Preferences.OnCommitListener() {
         @Override
         public void onCommit() {
             loadPreferences();
@@ -45,7 +45,7 @@ public class SendingPool implements ISendingPool {
      * @param packetBuilder The packet builder to create packets for a message.
      * @param groupKeyStore The key store containing the keys to encrypt the packets.
      */
-    public SendingPool(IPreferences preferences, IMessageStore messageStore,
+    public SendingPool(IAdtnPreferences preferences, IMessageStore messageStore,
                        IPacketBuilder packetBuilder, IGroupKeyStore groupKeyStore) {
         // Store references
         this.preferences = preferences;

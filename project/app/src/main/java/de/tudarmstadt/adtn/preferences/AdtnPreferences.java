@@ -2,7 +2,7 @@ package de.tudarmstadt.adtn.preferences;
 
 import android.content.Context;
 
-public class Preferences extends de.tudarmstadt.adtn.genericpreferences.Preferences implements IPreferences {
+public class AdtnPreferences extends de.tudarmstadt.adtn.genericpreferences.Preferences implements IAdtnPreferences {
 
     private static final String PREFKEY_SENDING_POOL_SEND_INTERVAL = "SendingPoolSendInterval";
     private static final String PREFKEY_SENDING_POOL_REFILL_THRESHOLD = "SendingPoolRefillThreshold";
@@ -10,7 +10,7 @@ public class Preferences extends de.tudarmstadt.adtn.genericpreferences.Preferen
     private static final String PREFKEY_AUTO_JOIN_AD_HOC_NETWORK = "AutoJoinAdHocNetwork";
     private static final String PREFKEY_SHOW_HELP_BUTTONS = "ShowHelpButtons";
 
-    public Preferences(Context context) {
+    public AdtnPreferences(Context context) {
         super(context, "adtn.preferences");
     }
 

@@ -13,7 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import de.tudarmstadt.adtn.preferences.IPreferences;
+import de.tudarmstadt.adtn.preferences.IAdtnPreferences;
 import de.tudarmstadt.timberdoodle.IService;
 import de.tudarmstadt.timberdoodle.LocationPrivacy;
 import de.tudarmstadt.timberdoodle.R;
@@ -96,7 +96,7 @@ public class SettingsActivity extends TimberdoodleActivity {
 
         // Set up expert mode setting number pickers
 
-        final IPreferences netPrefs = service.getAdtnService().getPreferences();
+        final IAdtnPreferences netPrefs = service.getAdtnService().getPreferences();
 
         setUpNumberPicker(1, 9999999, R.id.interval_textView, R.id.edit_interval_button,
                 R.string.settingsDialogTexts_0, new IntegerSettingListener() {
@@ -149,7 +149,7 @@ public class SettingsActivity extends TimberdoodleActivity {
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IPreferences preferences = getService().getAdtnService().getPreferences();
+                IAdtnPreferences preferences = getService().getAdtnService().getPreferences();
                 boolean showHelpButtons = !preferences.getShowHelpButtons();
                 toggleButton.setChecked(showHelpButtons);
                 preferences.edit();

@@ -22,7 +22,7 @@ public abstract class Preferences implements IPreferences {
     private volatile SharedPreferences.Editor editor;
 
     /**
-     * Creates a new Preferences object.
+     * Creates a new AdtnPreferences object.
      *
      * @param context  The context to use.
      * @param filename The filename where the sharedPreferences are stored.

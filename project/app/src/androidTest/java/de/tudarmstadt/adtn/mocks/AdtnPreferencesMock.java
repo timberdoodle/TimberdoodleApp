@@ -1,11 +1,11 @@
 package de.tudarmstadt.adtn.mocks;
 
-import de.tudarmstadt.adtn.preferences.IPreferences;
+import de.tudarmstadt.adtn.preferences.IAdtnPreferences;
 
 /**
- * Mocks a Preferences object.
+ * Mocks a AdtnPreferences object.
  */
-public class PreferencesMock implements IPreferences {
+public class AdtnPreferencesMock implements IAdtnPreferences {
 
     private int sendInterval = 1;
     private int refill = 10;

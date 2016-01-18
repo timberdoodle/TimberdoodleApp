@@ -3,7 +3,7 @@ package de.tudarmstadt.adtn.preferences;
 /**
  * Provides methods for accessing and modifying the aDTN preferences.
  */
-public interface IPreferences extends de.tudarmstadt.adtn.genericpreferences.IPreferences {
+public interface IAdtnPreferences extends de.tudarmstadt.adtn.genericpreferences.IPreferences {
 
     // Sending pool send interval
     int DEFAULT_SENDING_POOL_SEND_INTERVAL = 10;

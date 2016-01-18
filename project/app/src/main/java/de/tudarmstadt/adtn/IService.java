@@ -3,7 +3,7 @@ package de.tudarmstadt.adtn;
 import de.tudarmstadt.adtn.ciphersuite.IGroupCipher;
 import de.tudarmstadt.adtn.groupkeyshareexpirationmanager.IGroupKeyShareExpirationManager;
 import de.tudarmstadt.adtn.groupkeystore.IGroupKeyStore;
-import de.tudarmstadt.adtn.preferences.IPreferences;
+import de.tudarmstadt.adtn.preferences.IAdtnPreferences;
 
 /**
  * The aDTN service.
@@ -40,7 +40,7 @@ public interface IService {
     /**
      * @return The service preferences.
      */
-    IPreferences getPreferences();
+    IAdtnPreferences getPreferences();
 
     /**
      * @return The group cipher object.
