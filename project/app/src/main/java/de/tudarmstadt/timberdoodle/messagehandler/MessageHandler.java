@@ -87,14 +87,14 @@ public class MessageHandler implements IMessageHandler {
      * Stores a private chat message in the chat log and passes it to the aDTN service.
      *
      * @param message The message to send.
-     * @param keyId   The ID of the receiver's public key
+     * @param receiverKeyId   The ID of the receiver's public key
      * @param sign    True if the message should be signed with the local private key or false otherwise.
      * @return The ID of the message in the chat log.
      */
     @Override
     public long sendPrivateChatMessage(String message, long receiverKeyId, boolean sign) {
-        byte[] plaintext, encodedMessage = encodeText(message);
-        int encodedMessageOffset;
+        byte[] plaintext;
+        byte[] encodedMessage = encodeText(message);
 
         if (sign) {
             // Create signature of encoded message
@@ -116,7 +116,9 @@ public class MessageHandler implements IMessageHandler {
 
         // Encrypt with intended receiver's public key
         KeyStoreEntry<PublicKey> entry = friendKeyStore.getEntry(receiverKeyId);
-        if (entry == null) return 0; // Cancel if ID is invalid
+        if (entry == null) {
+            return 0; // Cancel if ID is invalid
+        }
         byte[] encrypted = friendCipher.encrypt(plaintext, 0, plaintext.length, entry.getKey());
 
         // Send and add to chat log
