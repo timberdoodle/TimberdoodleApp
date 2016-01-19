@@ -30,10 +30,6 @@ import de.tudarmstadt.timberdoodle.R;
  */
 public class Service extends android.app.Service implements IService {
 
-    private static final String ACTION_HANDLE_RECEIVED_MESSAGE = "de.tudarmstadt.adtn.IService.ACTION_HANDLE_RECEIVED_MESSAGE";
-    private static final String INTENT_ARG_HEADER = "header";
-    private static final String INTENT_ARG_CONTENT = "content";
-
     private static final String GROUP_KEY_STORE_FILENAME = "network_group_keys";
     private static final long GROUP_KEY_SHARE_EXPIRATION_INTERVAL = (long) 5 * 60000; // 5 minutes
 
