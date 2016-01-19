@@ -41,7 +41,6 @@ public class MessageHandler implements IMessageHandler {
             assert header != null;
             byte[] message = (byte[]) extras.get(IService.INTENT_ARG_CONTENT);
             assert message != null;
-
             // Handle message type
             byte type = (byte) (header & 3);
             if (type == MESSAGE_TYPE_CHAT) {
@@ -181,15 +180,20 @@ public class MessageHandler implements IMessageHandler {
     private void handleReceivedPrivateChatMessage(byte[] content) {
         // Decrypt private message. Ignore if not decipherable.
         byte[] decrypted = friendCipher.tryDecrypt(content);
-        if (decrypted == null) return;
-
+        if (decrypted == null) {
+            return;
+        }
         // Check if message is signed and if the sender is known
-        if (decrypted.length < 1) return; // Ignore invalid messages
+        if (decrypted.length < 1) {
+            return; // Ignore invalid messages
+        }
         long sender = 0;
         int textOffset = 1;
         if (decrypted[0] != 0) { // First byte indicates if signature follows
             int signatureLen = friendCipher.getNumBytesInSignature();
-            if (content.length < 1 + signatureLen) return; // Ignore invalid messages
+            if (content.length < 1 + signatureLen) {
+                return; // Ignore invalid messages
+            }
             sender = getSenderBySignature(
                     decrypted, 1 + signatureLen, content.length - 1 - signatureLen,
                     decrypted, 1);
