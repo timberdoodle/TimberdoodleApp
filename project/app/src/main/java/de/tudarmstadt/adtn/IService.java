@@ -10,10 +10,6 @@ import de.tudarmstadt.adtn.preferences.IAdtnPreferences;
  */
 public interface IService {
 
-    static final String ACTION_HANDLE_RECEIVED_MESSAGE = "de.tudarmstadt.adtn.IService.ACTION_HANDLE_RECEIVED_MESSAGE";
-    static final String INTENT_ARG_HEADER = "header";
-    static final String INTENT_ARG_CONTENT = "content";
-
     /**
      * Starts receiving messages and processing the sending pool.
      */
