@@ -213,7 +213,7 @@ public class Service extends android.app.Service implements IService {
     @Override
     public void sendMessage(byte header, byte[] content) {
         if (content.length > ProtocolConstants.MAX_MESSAGE_CONTENT_SIZE) {
-            throw new RuntimeException("Content size exceeds maximum allowed size");
+            throw new IllegalArgumentException("Content size exceeds maximum allowed size");
         }
 
         // Merge header and content and put them in the message store

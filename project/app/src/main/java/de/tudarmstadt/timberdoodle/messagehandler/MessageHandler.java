@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import java.security.PublicKey;
 import java.util.Collection;
@@ -23,6 +24,7 @@ import de.tudarmstadt.timberdoodle.friendkeystore.IFriendKeyStore;
  */
 public class MessageHandler implements IMessageHandler {
 
+    private static final String TAG = "MessageHandler";
     private final static int MESSAGE_TYPE_CHAT = 0;
 
     private IService adtnService;
@@ -154,7 +156,11 @@ public class MessageHandler implements IMessageHandler {
     }
 
     private void sendMessage(byte header, byte[] content) {
-        adtnService.sendMessage(header, content);
+        try {
+            adtnService.sendMessage(header, content);
+        } catch (IllegalArgumentException e) {
+            Log.wtf(TAG, e.getMessage(), e);
+        }
     }
 
     private void handleReceivedPublicChatMessage(byte[] content) {
