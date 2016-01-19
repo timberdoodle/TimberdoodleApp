@@ -25,7 +25,7 @@ import de.tudarmstadt.timberdoodle.friendkeystore.IFriendKeyStore;
 public class MessageHandler implements IMessageHandler {
 
     private static final String TAG = "MessageHandler";
-    private final static int MESSAGE_TYPE_CHAT = 0;
+    private static final int MESSAGE_TYPE_CHAT = 0;
 
     private IService adtnService;
     private IChatLog chatLog;
